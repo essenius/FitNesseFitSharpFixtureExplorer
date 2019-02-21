@@ -1,0 +1,7 @@
+﻿|report:Namespace|report:Class|report:Parameters|report:Supports Table Type|report:Documentation|
+|report:Test Assembly|report:Class Not Supporting Decision Table|report:|report:Script|report:|
+|report:Test Assembly|report:Deprecated Class|report:|report:Decision, Script|report:[Deprecated class: Use Public Class instead]|
+|report:Test Assembly|report:Deprecated Class|report:parameter: String|report:Decision, Script|report:[Deprecated class: Use Public Class instead]Documentation for constructor with one parameter|
+|report:Test Assembly|report:Public Class|report:input: Int32|report:Decision, Query, Script|report:Just a demo public class constructor with one parameter|
+|report:Test Assembly|report:Public Class|report:input1: Int32, input2: Int32|report:Decision, Query, Script|report:Just a demo public class constructor with two parameters|
+|report:Test Assembly|report:Wrong Table Class|report:|report:Decision, Script|report:Class with a wrong Table/Query signature, so only supports Script and Decision|

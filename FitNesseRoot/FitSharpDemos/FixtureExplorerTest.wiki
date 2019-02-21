@@ -1,0 +1,8 @@
+!path "FixtureExplorer\FixtureExplorer\bin\release\FixtureExplorer.dll"
+
+!|import        |
+|FixtureExplorer|
+
+!|table:fixture classes|FixtureExplorer\TestAssembly\bin\release\TestAssembly.dll|
+
+!|table:fixture functions|FixtureExplorer\TestAssembly\bin\release\TestAssembly.dll|
