@@ -60,7 +60,7 @@ namespace FixtureExplorer
                     var scope = methodHelper.Scope;
                     if (string.IsNullOrEmpty(documentation) && (scope.Contains("internal") || scope.Contains("private")))
                     {
-                        documentation = "Internal use only. Do not use in tests.";
+                        documentation = "[Internal use only. Do not use in tests]";
                     }
                     returnList.Add(Row(type, scope, methodInfo, methodHelper, documentation));
                 }

@@ -2,3 +2,4 @@
 1.1.0 Enabled exposure of internal methods and properties
 2.0.0 Synchonization of versions with other fixtures
 2.1.0 Standard descriptions for deprecated and internal functions; introduction of Documentation attribute to replace FixtureDocumentation dictionary
+2.1.1 Formatting changes for reporting internal members
