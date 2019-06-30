@@ -30,7 +30,7 @@ namespace FixtureExplorer.Helpers
         };
 
         // We hide some methods inherited from Object - those are always there and generally not useful to mention -
-        // and the static Documentation property that we define on the fixtures optionally to provide more input about the functions.
+        // and the static Documentation property that we defined in previous versions of the fixtures to provide more input about the functions.
         private static readonly List<string> MethodsToSkip = new List<string>
         {
             "get_" + FixtureDocumentationProperty,
@@ -97,7 +97,7 @@ namespace FixtureExplorer.Helpers
 
         // Decision tables can have an optional Table method executed just after the constructor,
         // passing  a list of lists containing all cells of the table except the very first row
-        private bool SupportsDecisionTableOptional =>
+        private bool SupportsDecisionTableOptional => 
             DecisionTableVoidMethods.Contains(Info.Name) && HasVoidSignature || Info.Name == "Table" && HasTableSignature;
 
         private bool SupportsQueryTable => Info.Name == "Query" && HasQuerySignature;

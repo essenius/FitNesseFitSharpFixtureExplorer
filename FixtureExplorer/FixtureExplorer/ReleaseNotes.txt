@@ -3,3 +3,4 @@
 2.0.0 Synchonization of versions with other fixtures
 2.1.0 Standard descriptions for deprecated and internal functions; introduction of Documentation attribute to replace FixtureDocumentation dictionary
 2.1.1 Formatting changes for reporting internal members
+2.1.2 Internal optimization in NameStateMachine, bug fix in DoTableTest

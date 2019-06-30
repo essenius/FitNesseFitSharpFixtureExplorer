@@ -1,5 +1,5 @@
 # FitNesseFitSharpFixtureExplorer
-Fixture to identify API of fixture assemblies using reflection (and documentation convention in the assembly)
+Fixture to identify API of fixture assemblies using reflection (and documentation convention in the assembly).
 
 # Getting Started
 1. Download FitNesse (http://fitnesse.org) and install it to C:\Apps\FitNesse

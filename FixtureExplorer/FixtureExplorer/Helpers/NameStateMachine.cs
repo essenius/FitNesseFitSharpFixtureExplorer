@@ -97,22 +97,16 @@ namespace FixtureExplorer.Helpers
 
         public NameStateMachine() => _state = NameState.OutOfWord;
 
+        private static NameEvent NameEventFor(char c)
+        {
+            if (char.IsDigit(c)) return NameEvent.Digit;
+            return char.IsLetter(c) ? NameEvent.Letter : NameEvent.Other;
+        }
+
         [SuppressMessage("ReSharper", "SwitchStatementMissingSomeCases", Justification = "Included in default")]
         public string NextChar(char c)
         {
-            NameEvent nameEvent;
-            if (char.IsDigit(c))
-            {
-                nameEvent = NameEvent.Digit;
-            }
-            else if (char.IsLetter(c))
-            {
-                nameEvent = NameEvent.Letter;
-            }
-            else
-            {
-                nameEvent = NameEvent.Other;
-            }
+            var nameEvent = NameEventFor(c);
             var next = _dict[new StateTransitionKey {NameState = _state, NameEvent = nameEvent}];
             _state = next.NextState;
             switch (next.Action)

@@ -7,7 +7,7 @@
 |report:Test Assembly|report:Public Class|report:public|report:An Obsolete Property|report:Property (Set)|report:Void|report:value: Boolean|report:Decision, Script|report:[Deprecated: Use Public Property instead]|
 |report:Test Assembly|report:Public Class|report:public|report:An Obsolete Property Without Message|report:Property (Get)|report:Boolean|report:|report:Decision, Script|report:[Deprecated]|
 |report:Test Assembly|report:Public Class|report:public|report:An Obsolete Property Without Message|report:Property (Set)|report:Void|report:value: Boolean|report:Decision, Script|report:[Deprecated]|
-|report:Test Assembly|report:Public Class|report:internal|report:Internal Method|report:Method|report:Void|report:|report:Script|report:Internal use only. Do not use in tests.|
+|report:Test Assembly|report:Public Class|report:internal|report:Internal Method|report:Method|report:Void|report:|report:Script|report:[Internal use only. Do not use in tests]|
 |report:Test Assembly|report:Public Class|report:public|report:Public Get Property|report:Property (Get)|report:Boolean|report:|report:Decision, Script|report:|
 |report:Test Assembly|report:Public Class|report:public|report:Public Method No Params|report:Method|report:Void|report:|report:Script|report:|
 |report:Test Assembly|report:Public Class|report:public|report:Public Method One Param|report:Method|report:Object|report:longParam: Int64|report:Script|report:|
