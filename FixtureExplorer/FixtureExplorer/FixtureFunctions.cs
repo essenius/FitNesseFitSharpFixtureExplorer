@@ -70,7 +70,7 @@ namespace FixtureExplorer
 
         private static string RealName(string reflectedName)
         {
-            if (reflectedName.StartsWith("get_") || reflectedName.StartsWith("set_")) return reflectedName.Substring(4);
+            if (reflectedName.StartsWith("get_", StringComparison.Ordinal) || reflectedName.StartsWith("set_", StringComparison.Ordinal)) return reflectedName.Substring(4);
             return reflectedName;
         }
 

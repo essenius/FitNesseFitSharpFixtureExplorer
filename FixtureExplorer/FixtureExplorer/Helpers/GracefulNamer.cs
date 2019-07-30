@@ -34,9 +34,9 @@ namespace FixtureExplorer.Helpers
             }
         }
 
-        public bool IsGetProperty => _fixtureName.StartsWith("get_");
+        public bool IsGetProperty => _fixtureName.StartsWith("get_", StringComparison.Ordinal);
         public bool IsProperty => IsGetProperty || IsSetProperty;
-        public bool IsSetProperty => _fixtureName.StartsWith("set_");
+        public bool IsSetProperty => _fixtureName.StartsWith("set_", StringComparison.Ordinal);
         public string PropertyName => IsProperty ? _fixtureName.Substring(4) : _fixtureName;
 
         // Convert a method name into a graceful name

@@ -14,6 +14,7 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace TestAssembly
 {
+    [ExcludeFromCodeCoverage]
     [SuppressMessage("ReSharper", "UnusedMember.Global", Justification = "Used by FitSharp")]
     public class WrongTableClass
     {
@@ -36,6 +37,7 @@ namespace TestAssembly
 
         public List<object> DoTable(List<object> table) => table;
 
+        [SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "FitNesse API")]
         public void Execute(string command)
         {
         }

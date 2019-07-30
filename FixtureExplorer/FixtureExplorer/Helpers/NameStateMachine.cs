@@ -11,6 +11,7 @@
 
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
 
 namespace FixtureExplorer.Helpers
 {
@@ -112,9 +113,9 @@ namespace FixtureExplorer.Helpers
             switch (next.Action)
             {
                 case NameAction.AsIs:
-                    return c.ToString();
+                    return c.ToString(CultureInfo.InvariantCulture);
                 case NameAction.Upper:
-                    return c.ToString().ToUpperInvariant();
+                    return c.ToString(CultureInfo.InvariantCulture).ToUpperInvariant();
                 default: // includes None
                     return string.Empty;
             }

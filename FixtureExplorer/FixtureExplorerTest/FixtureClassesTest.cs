@@ -28,13 +28,14 @@ namespace FixtureExplorerTest
             TableTypeFixture fixture = new FixtureClasses("..\\..\\..\\TestAssembly\\bin\\Debug\\TestAssembly.dll");
             var result = fixture.DoTable(null);
 
-            var expectedFile = new StreamReader("TestAssemblyClasses.txt");
-
-            foreach (List<string> row in result)
+            using (var expectedFile = new StreamReader("TestAssemblyClasses.txt"))
             {
-                var line = expectedFile.ReadLine();
-                var rowString = row.Aggregate("|", (current, cell) => current + cell + "|");
-                Assert.AreEqual(line, rowString);
+                foreach (List<string> row in result)
+                {
+                    var line = expectedFile.ReadLine();
+                    var rowString = row.Aggregate("|", (current, cell) => current + cell + "|");
+                    Assert.AreEqual(line, rowString);
+                }
             }
         }
 

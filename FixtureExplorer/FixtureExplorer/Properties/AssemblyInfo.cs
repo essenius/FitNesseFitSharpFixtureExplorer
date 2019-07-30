@@ -12,5 +12,5 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]
 [assembly: Guid("943b9824-4008-450a-a2f7-83566d59d59b")]
-[assembly: AssemblyVersion("2.1.2")]
+[assembly: AssemblyVersion("2.1.3")]
 [assembly: InternalsVisibleTo("FixtureExplorerTest")]

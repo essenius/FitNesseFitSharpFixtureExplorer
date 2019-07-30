@@ -39,7 +39,7 @@ namespace FixtureExplorer.Helpers
         public static string Documentation(this MemberInfo info)
         {
             // We need reflection here because the namespace of the DocumentationAttribute class may differ per assembly
-            var attrib = info.GetCustomAttributes(false).FirstOrDefault(obj => obj.GetType().Name.Equals("DocumentationAttribute"));
+            var attrib = info.GetCustomAttributes(false).FirstOrDefault(obj => obj.GetType().Name.Equals("DocumentationAttribute", StringComparison.Ordinal));
             var documentation = attrib?.GetType().GetProperty("Message")?.GetValue(attrib).ToString();
             return documentation;
         }
@@ -55,7 +55,7 @@ namespace FixtureExplorer.Helpers
             if (docDictionary.ContainsKey(key)) return docDictionary[key];
             var keyWithoutParamCount = key.Split('`')[0];
             if (docDictionary.ContainsKey(keyWithoutParamCount)) return docDictionary[keyWithoutParamCount];
-            if (!keyWithoutParamCount.StartsWith("get_") && !keyWithoutParamCount.StartsWith("set_")) return null;
+            if (!keyWithoutParamCount.StartsWith("get_", StringComparison.Ordinal) && !keyWithoutParamCount.StartsWith("set_", StringComparison.Ordinal)) return null;
             var propertyKey = keyWithoutParamCount.Substring(4);
             return docDictionary.ContainsKey(propertyKey) ? docDictionary[propertyKey] : null;
         }

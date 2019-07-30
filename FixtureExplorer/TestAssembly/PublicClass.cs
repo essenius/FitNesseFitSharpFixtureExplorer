@@ -17,6 +17,7 @@ using System.Globalization;
 
 namespace TestAssembly
 {
+    [ExcludeFromCodeCoverage]
     [SuppressMessage("ReSharper", "UnusedMember.Global", Justification = "Used by FitSharp")]
     public class PublicClass
     {

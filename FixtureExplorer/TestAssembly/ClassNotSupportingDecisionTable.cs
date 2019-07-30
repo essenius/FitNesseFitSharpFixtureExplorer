@@ -14,6 +14,7 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace TestAssembly
 {
+    [ExcludeFromCodeCoverage]
     [SuppressMessage("ReSharper", "UnusedMember.Global", Justification = "Used by FitSharp")]
     public class ClassNotSupportingDecisionTable
     {
