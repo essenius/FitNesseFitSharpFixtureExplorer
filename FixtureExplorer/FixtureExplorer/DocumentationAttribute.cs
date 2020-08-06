@@ -1,4 +1,4 @@
-﻿// Copyright 2016-2019 Rik Essenius
+﻿// Copyright 2016-2020 Rik Essenius
 //
 //   Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 //   except in compliance with the License. You may obtain a copy of the License at
@@ -13,10 +13,15 @@ using System;
 
 namespace FixtureExplorer
 {
+    /// <summary>Documentation mechanism for fixtures.</summary>
+    /// <remarks>Superseded by using XML documentation, but still supported for older fixtuer versions</remarks>
     [AttributeUsage(AttributeTargets.All)]
     public class DocumentationAttribute : Attribute
     {
+        /// <summary>Define the documentation</summary>
         public DocumentationAttribute(string message) => Message = message;
+
+        /// <summary>the documentation to be shown</summary>
         public string Message { get; }
     }
 }

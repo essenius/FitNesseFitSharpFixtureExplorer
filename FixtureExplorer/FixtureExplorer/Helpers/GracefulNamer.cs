@@ -1,4 +1,4 @@
-﻿// Copyright 2016-2019 Rik Essenius
+﻿// Copyright 2016-2020 Rik Essenius
 //
 //   Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 //   except in compliance with the License. You may obtain a copy of the License at
@@ -21,10 +21,10 @@ namespace FixtureExplorer.Helpers
     internal class GracefulNamer
     {
         private readonly string _fixtureName;
-        
+
         public GracefulNamer(string fixtureName) => _fixtureName = fixtureName;
 
-        // Convert a graceful name into a method name using a state machine
+        ///<summary>Convert a graceful name into a method name using a state machine</summary>
         public string Disgrace
         {
             get
@@ -34,28 +34,37 @@ namespace FixtureExplorer.Helpers
             }
         }
 
+        /// <returns>Is this a Get property?</returns>
         public bool IsGetProperty => _fixtureName.StartsWith("get_", StringComparison.Ordinal);
-        public bool IsProperty => IsGetProperty || IsSetProperty;
-        public bool IsSetProperty => _fixtureName.StartsWith("set_", StringComparison.Ordinal);
-        public string PropertyName => IsProperty ? _fixtureName.Substring(4) : _fixtureName;
 
-        // Convert a method name into a graceful name
+        /// <returns>Is this a property?</returns>
+        public bool IsProperty => IsGetProperty || IsSetProperty;
+
+        /// <returns>Is this a Set property?</returns>
+        public bool IsSetProperty => _fixtureName.StartsWith("set_", StringComparison.Ordinal);
+
+        /// <returns>The real name of the member (i.e, without get_ or set_ for properties)</returns>
+        public string RealName => IsProperty ? _fixtureName.Substring(4) : _fixtureName;
+
+        ///<summary>Convert a method name into a graceful name</summary>
         public string Regrace
         {
             get
             {
-                Debug.Assert(!string.IsNullOrEmpty(PropertyName));
+                Debug.Assert(!string.IsNullOrEmpty(RealName), nameof(RealName) + " is null or empty");
                 const char separator = '.';
                 var result = new StringBuilder();
 
                 var isGrabbingDigits = false;
                 var wasSeparator = true;
-                foreach (var currentChar in PropertyName)
+                foreach (var currentChar in RealName)
                 {
+                    // Look for a word separator
                     if (char.IsUpper(currentChar) ||
                         char.IsDigit(currentChar) && !isGrabbingDigits ||
                         currentChar == separator)
                     {
+                        // Add a space if this is a new separator
                         if (!wasSeparator && currentChar != separator) result.Append(" ");
                         wasSeparator = currentChar == separator;
                     }
@@ -67,8 +76,11 @@ namespace FixtureExplorer.Helpers
             }
         }
 
+        /// <returns>is this a Get property?</returns>
         public string Type => IsGetProperty ? "Property (Get)" : IsSetProperty ? "Property (Set)" : "Method";
 
+
+        /// <returns>the graceful name of a type</returns> 
         public static string GracefulName(Type type)
         {
             Debug.Assert(type.Namespace != null, "type.Namespace != null");

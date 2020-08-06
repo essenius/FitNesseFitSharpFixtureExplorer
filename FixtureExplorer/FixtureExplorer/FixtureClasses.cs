@@ -1,4 +1,4 @@
-﻿// Copyright 2016-2019 Rik Essenius
+﻿// Copyright 2016-2020 Rik Essenius
 //
 //   Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 //   except in compliance with the License. You may obtain a copy of the License at
@@ -16,13 +16,17 @@ using FixtureExplorer.Helpers;
 
 namespace FixtureExplorer
 {
+    /// <summary>Fixture to show information about the classes in an assembly</summary>
     public class FixtureClasses : TableTypeFixture
     {
+        /// <summary>Initialize the fixture with an assembly name</summary>
         public FixtureClasses(string assemblyName) : base(assemblyName)
         {
         }
 
-        private static List<object> ListWithHeaderRow => new List<object>
+        /// <summary>Return a new result list with a header row</summary>
+        /// <remarks>Part of the Template pattern for DoTable</remarks>
+        protected override List<object> ListWithHeaderRow => new List<object>
         {
             new List<string>
             {
@@ -34,27 +38,23 @@ namespace FixtureExplorer
             }
         };
 
-        public override List<object> DoTable(List<List<string>> table)
+        /// <summary>Add a documentation row of all constructors of the given type to the result list</summary>
+        /// <remarks>Part of the Template pattern for DoTable</remarks>
+        protected override void AddToList(List<object> result, Type type)
         {
-            var returnList = ListWithHeaderRow;
-
-            foreach (var type in ClassesVisibleToFitNesse.OrderBy(type => type.Name))
+            foreach (var constructor in type.GetConstructors())
             {
-                foreach (var constructor in type.GetConstructors())
-                {
-                    var helper = new MethodBaseHelper(constructor, type);
-                    var resultEntry = helper.Parameters;
-                    var deprecatedMessage = helper.DeprecationMessage();
-                    var documentation = helper.Documentation() ?? type.Documentation();
-                    if (string.IsNullOrEmpty(documentation)) documentation = type.DocumentationFor("`" + resultEntry.Count);
-                    documentation = string.Empty + deprecatedMessage + documentation;
-                    returnList.Add(Row(type.Namespace, type.Name, resultEntry, SupportedTables(type), documentation));
-                }
+                var documenter = new MethodBaseDocumenter(constructor);
+                var resultEntry = documenter.Parameters;
+                var deprecatedMessage = documenter.DeprecationMessage;
+                var documentation = documenter.ConstructorDocumentation;
+                documentation = string.Empty + deprecatedMessage + documentation;
+                result.Add(Row(type.Namespace, type.Name, resultEntry, SupportedTables(type), documentation));
             }
-            return returnList;
         }
 
-        private static List<string> Row(
+        /// <summary>A row of constructor documentation elements</summary>
+        private List<string> Row(
             string nameSpace, string className, IEnumerable<string> parameters, IEnumerable<string> supports, string documentation) =>
             new List<string>
             {
@@ -65,14 +65,15 @@ namespace FixtureExplorer
                 Report(documentation)
             };
 
+        /// <param name="type">the fixture type to inspect</param>
+        /// <returns>a list of FitNesse tables that the type support</returns>
         public static IList<string> SupportedTables(Type type)
         {
             var tables = new List<string>();
-            foreach (var methodInfo in MethodHelper.RelevantMethods(type))
+            foreach (var methodInfo in MethodBaseDocumenter.RelevantMethods(type))
             {
-                var method = new MethodHelper(methodInfo, type);
+                var method = new FixtureDocumenter(methodInfo);
                 tables = tables.Union(method.TablesSupported).ToList();
-                Console.WriteLine($"{methodInfo.Name} => {string.Join(",", tables)}");
             }
             // no sense reporting the presence of optional methods here. if the mandatory ones are there, we report it, and if not we don't.
             tables.Remove("Decision-Optional");

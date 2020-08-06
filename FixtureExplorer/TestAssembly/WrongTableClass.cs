@@ -1,4 +1,4 @@
-﻿// Copyright 2016-2019 Rik Essenius
+﻿// Copyright 2016-2020 Rik Essenius
 //
 //   Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 //   except in compliance with the License. You may obtain a copy of the License at
@@ -14,8 +14,10 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace TestAssembly
 {
-    [ExcludeFromCodeCoverage]
-    [SuppressMessage("ReSharper", "UnusedMember.Global", Justification = "Used by FitSharp")]
+    /// <summary>
+    ///     WrongTableClass is a fixture with a wrong Table or Query Signature, so should not be recognized as table
+    /// </summary>
+    [ExcludeFromCodeCoverage, SuppressMessage("ReSharper", "UnusedMember.Global", Justification = "Used by FitSharp")]
     public class WrongTableClass
     {
         public static Dictionary<string, string> FixtureDocumentation { get; } = new Dictionary<string, string>

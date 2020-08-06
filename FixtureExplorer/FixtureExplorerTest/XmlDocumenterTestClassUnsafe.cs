@@ -9,18 +9,10 @@
 //   is distributed on an "AS IS" BASIS WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //   See the License for the specific language governing permissions and limitations under the License.
 
-using FixtureExplorer;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-
 namespace FixtureExplorerTest
 {
-    [TestClass]
-    public class DocumentationAttributeTest
+    internal unsafe class XmlDocumenterTestClassUnsafe
     {
-        [TestMethod]
-        public void DocumentationAttributeTest1()
-        {
-            Assert.AreEqual("test", new DocumentationAttribute("test").Message);
-        }
+        public int UnsafeMethod(int* input) => *input;
     }
 }

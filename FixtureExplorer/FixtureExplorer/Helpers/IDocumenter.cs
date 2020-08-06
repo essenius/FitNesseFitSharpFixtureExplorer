@@ -9,18 +9,14 @@
 //   is distributed on an "AS IS" BASIS WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //   See the License for the specific language governing permissions and limitations under the License.
 
-using FixtureExplorer;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Reflection;
 
-namespace FixtureExplorerTest
+namespace FixtureExplorer.Helpers
 {
-    [TestClass]
-    public class DocumentationAttributeTest
+    /// <summary>The interface that encapsulates how to get constructor or method documentation</summary>
+    internal interface IDocumenter
     {
-        [TestMethod]
-        public void DocumentationAttributeTest1()
-        {
-            Assert.AreEqual("test", new DocumentationAttribute("test").Message);
-        }
+        string ConstructorDocumentation(ConstructorInfo constructor);
+        string MethodBaseDocumentation(MethodBase methodBase);
     }
 }

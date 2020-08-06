@@ -1,4 +1,4 @@
-﻿// Copyright 2016-2019 Rik Essenius
+﻿// Copyright 2016-2020 Rik Essenius
 //
 //   Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 //   except in compliance with the License. You may obtain a copy of the License at
@@ -48,9 +48,11 @@ namespace FixtureExplorer.Helpers
         public NameAction Action;
     }
 
-    // this state machine converts a graceful name (i.e. with spaces and potentially not capitalized)
-    // into a C# method name. It takes over letters and digits, ignores other characters, and capitalizes the first
-    // letter of each word (i.e. PascalCase)
+    /// <summary>
+    ///     this state machine converts a graceful name (i.e. with spaces and potentially not capitalized)
+    ///     into a C# method name. It takes over letters and digits, ignores other characters, and capitalizes the first
+    ///     letter of each word (i.e. PascalCase)
+    /// </summary>
     internal class NameStateMachine
     {
         private readonly Dictionary<StateTransitionKey, StateTransitionValue> _dict = new Dictionary
@@ -96,14 +98,23 @@ namespace FixtureExplorer.Helpers
 
         private NameState _state;
 
+        /// <summary>
+        ///     We start the state machine in the Out Of Word state
+        /// </summary>
         public NameStateMachine() => _state = NameState.OutOfWord;
 
+        /// <returns>the name event corresponding to the input character (Digit, Letter or Other)</returns>
         private static NameEvent NameEventFor(char c)
         {
             if (char.IsDigit(c)) return NameEvent.Digit;
             return char.IsLetter(c) ? NameEvent.Letter : NameEvent.Other;
         }
 
+        /// <returns>the next character in the right casing, or empty string if not in a word</returns>
+        /// <remarks>
+        ///     Uses the combination of current state and and name event to determine next state and next action.
+        ///     Next action decides what we do with the character (to uppercase, as-is or remove)
+        /// </remarks>
         [SuppressMessage("ReSharper", "SwitchStatementMissingSomeCases", Justification = "Included in default")]
         public string NextChar(char c)
         {

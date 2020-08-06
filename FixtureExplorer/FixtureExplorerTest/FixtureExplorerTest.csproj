@@ -37,6 +37,8 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>FitNesseTestRules.ruleset</CodeAnalysisRuleSet>
+    <DocumentationFile>bin\Debug\FixtureExplorerTest.xml</DocumentationFile>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -64,11 +66,20 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="AttributeDocumenterTestClass.cs" />
+    <Compile Include="DictionaryDocumenterTestClass.cs" />
     <Compile Include="FixtureClassesTest.cs" />
+    <Compile Include="MethodBaseDocumenterTest.cs" />
+    <Compile Include="XmlDocumenterTestClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GracefulNamerTest.cs" />
     <Compile Include="FixtureFunctionsTest.cs" />
     <Compile Include="DocumentationAttributeTest.cs" />
+    <Compile Include="DictionaryDocumenterTest.cs" />
+    <Compile Include="AttributeDocumenterTest.cs" />
+    <Compile Include="XmlDocumenterTest.cs" />
+    <Compile Include="XmlDocumenterTestClassUnsafe.cs" />
+    <Compile Include="XmlDocumentKeyTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FixtureExplorer\FixtureExplorer.csproj">

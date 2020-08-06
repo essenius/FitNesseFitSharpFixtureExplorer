@@ -1,4 +1,4 @@
-﻿// Copyright 2016-2019 Rik Essenius
+﻿// Copyright 2016-2020 Rik Essenius
 //
 //   Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 //   except in compliance with the License. You may obtain a copy of the License at
@@ -12,11 +12,11 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
 
-
 namespace TestAssembly
 {
-    [ExcludeFromCodeCoverage]
-    [Obsolete("Use Public Class instead"), SuppressMessage("ReSharper", "UnusedMember.Global", Justification = "Used by FixtureExplorer"),
+    /// <summary>A deprecated class</summary>
+    [ExcludeFromCodeCoverage, Obsolete("Use Public Class instead"),
+     SuppressMessage("ReSharper", "UnusedMember.Global", Justification = "Used by FixtureExplorer"),
      SuppressMessage("ReSharper", "UnusedMember.Local", Justification = "Used by FixtureExplorer")]
     public class DeprecatedClass
     {
@@ -24,8 +24,12 @@ namespace TestAssembly
 
         public DeprecatedClass() => _parameter = "none";
 
-        [Documentation("Documentation for constructor with one parameter")]
-        public DeprecatedClass(string parameter) => _parameter = parameter;
+        /// <summary>
+        ///     Documentation for constructor with one parameter
+        /// </summary>
+        /// <param name="parameter">documentation for the parameter</param>
+        [Documentation("Documentation attribute for constructor with 1 parameter")]
+        public DeprecatedClass(string[,] parameter) => _parameter = parameter[0, 0];
 
         public string PublicMethodInObsoleteClass() => _parameter;
     }

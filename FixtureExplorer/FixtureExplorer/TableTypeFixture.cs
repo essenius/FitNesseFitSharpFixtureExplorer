@@ -1,4 +1,4 @@
-﻿// Copyright 2016-2019 Rik Essenius
+﻿// Copyright 2016-2020 Rik Essenius
 //
 //   Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 //   except in compliance with the License. You may obtain a copy of the License at
@@ -18,31 +18,60 @@ using System.Reflection;
 
 namespace FixtureExplorer
 {
+    /// <summary>Definition of a generic TableType fixture. Uses the Template pattern</summary>
     [SuppressMessage("ReSharper", "UnusedMember.Global", Justification = "Used by FitSharp")]
     public abstract class TableTypeFixture
     {
         private readonly string _assemblyName;
+        private Assembly _assembly;
 
+        /// <summary>Initialize TableTypeFixture with an assembly name</summary>
         protected TableTypeFixture(string assemblyName) => _assemblyName = assemblyName;
 
+        /// <returns>The list of public non-static classes in the assembly (which FitSharp can work with)</returns>
+        /// <remarks>If a class is sealed and abstract, it's a static class. We exclude exception or attribute classes</remarks>
         protected IEnumerable<Type> ClassesVisibleToFitNesse
         {
             get
             {
-                var asm = Assembly.LoadFrom(Path.GetFullPath(_assemblyName));
-
-                // FitNesse needs public non-static classes to work with. If a class is sealed and abstract, it's a static class.
-                // we also don't want to report exception or attribute classes
-
-                return asm.GetTypes().Where(t =>
+                return FixtureAssembly().GetTypes().Where(t =>
                     t.IsPublic && t.IsClass && !(t.IsSealed && t.IsAbstract) &&
                     !t.IsSubclassOf(typeof(Exception)) && !t.IsSubclassOf(typeof(Attribute)));
             }
         }
 
-        [SuppressMessage("ReSharper", "UnusedParameter.Global", Justification = "FitSharp signature")]
-        public abstract List<object> DoTable(List<List<string>> table);
+        /// <summary>Create the DoTable result list with a header row.</summary>
+        protected abstract List<object> ListWithHeaderRow { get; }
 
+        /// <summary>Add an item to the DoTable result list.</summary>
+        protected abstract void AddToList(List<object> result, Type type);
+
+        /// <summary>The Table Table interface for FitSharp</summary>
+        /// <param name="table">ignored, required for the interface</param>
+        /// <remarks>uses the Template pattern, ListWithHeaderRow and AddToList are overriden in derived classes</remarks>
+        [SuppressMessage("ReSharper", "UnusedParameter.Global", Justification = "FitSharp signature")]
+        public List<object> DoTable(List<List<string>> table)
+        {
+            var returnList = ListWithHeaderRow;
+
+            foreach (var type in ClassesVisibleToFitNesse.OrderBy(type => type.Name))
+            {
+                AddToList(returnList, type);
+            }
+            return returnList;
+        }
+
+        /// <summary>Memory function delivering the assemmbly to work with</summary>
+        private Assembly FixtureAssembly()
+        {
+            if (_assembly == null)
+            {
+                _assembly = Assembly.LoadFrom(Path.GetFullPath(_assemblyName));
+            }
+            return _assembly;
+        }
+
+        /// <returns>the input in the format for reporting in an output cell</returns>
         protected static string Report(string input) => "report:" + input;
     }
 }

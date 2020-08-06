@@ -1,6 +1,6 @@
 ﻿|report:Namespace|report:Class|report:Scope|report:Fixture Name|report:Method Type|report:Return Type|report:Parameters|report:Supports Table Type|report:Documentation|
 |report:Test Assembly|report:Class Not Supporting Decision Table|report:public|report:Int Method With Param|report:Method|report:String|report:param: Tuple<Nullable<Int32>, Nullable<Decimal>>|report:Script|report:|
-|report:Test Assembly|report:Class Not Supporting Decision Table|report:public|report:Void Method With Two Params|report:Method|report:Void|report:param1: String, param2: Nullable<Int32>|report:Script|report:Writes the two params concatenated|
+|report:Test Assembly|report:Class Not Supporting Decision Table|report:public|report:Void Method With Two Params|report:Method|report:Void|report:param1: String, param2: Nullable<Int32>|report:Script|report:Writes the two params concatenated. Params: { param1: param1 doc; param2: param2 doc }. Documentation Attribute - Writes the two params concatenated|
 |report:Test Assembly|report:Deprecated Class|report:public|report:Public Method In Obsolete Class|report:Method|report:String|report:|report:Decision, Script|report:[Deprecated class: Use Public Class instead]|
 |report:Test Assembly|report:Public Class|report:public|report:An Obsolete Method|report:Method|report:String|report:|report:Decision, Script|report:[Deprecated: Use Public Method instead]|
 |report:Test Assembly|report:Public Class|report:public|report:An Obsolete Property|report:Property (Get)|report:Boolean|report:|report:Decision, Script|report:[Deprecated: Use Public Property instead]|
@@ -21,7 +21,7 @@
 |report:Test Assembly|report:Public Class|report:public static|report:Public Static Property|report:Property (Get)|report:Nullable<Double>|report:|report:Decision, Script|report:Dummy Public Static Property doing absolutely nothing|
 |report:Test Assembly|report:Public Class|report:public static|report:Public Static Property|report:Property (Set)|report:Void|report:value: Nullable<Double>|report:Decision, Script|report:Dummy Public Static Property doing absolutely nothing|
 |report:Test Assembly|report:Public Class|report:public|report:Query|report:Method|report:Collection<Object>|report:|report:Query, Script|report:|
-|report:Test Assembly|report:Public Class|report:public|report:Table|report:Method|report:List<Object>|report:list: List<List<String>>|report:Decision-Optional, Query-Optional, Script|report:returns the element count of the input parameter|
+|report:Test Assembly|report:Public Class|report:public|report:Table|report:Method|report:List<Object>|report:list: List<List<String>>|report:Decision-Optional, Query-Optional, Script|report:Returns: the element count of the input parameter|
 |report:Test Assembly|report:Wrong Table Class|report:public|report:Begin Table|report:Method|report:Void|report:|report:Decision-Optional, Script|report:Executed just before a Decision table|
 |report:Test Assembly|report:Wrong Table Class|report:public|report:Do Table|report:Method|report:List<Object>|report:table: List<Object>|report:Script|report:|
 |report:Test Assembly|report:Wrong Table Class|report:public|report:Execute|report:Method|report:Void|report:command: String|report:Decision, Script|report:|

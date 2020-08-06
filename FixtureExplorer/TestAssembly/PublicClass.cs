@@ -1,4 +1,4 @@
-﻿// Copyright 2016-2019 Rik Essenius
+﻿// Copyright 2016-2020 Rik Essenius
 //
 //   Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 //   except in compliance with the License. You may obtain a copy of the License at
@@ -17,18 +17,26 @@ using System.Globalization;
 
 namespace TestAssembly
 {
-    [ExcludeFromCodeCoverage]
-    [SuppressMessage("ReSharper", "UnusedMember.Global", Justification = "Used by FitSharp")]
+    [ExcludeFromCodeCoverage, SuppressMessage("ReSharper", "UnusedMember.Global", Justification = "Used by FitSharp")]
     public class PublicClass
     {
-        [Documentation("Just a demo public class constructor with one parameter")]
+        /// <summary>
+        ///     Just a demo public class constructor with one parameter
+        /// </summary>
+        /// <param name="input"></param>
+        [Documentation("Documentation attribute for public class constructor with one parameter")]
         public PublicClass(int input) => PrivateProperty = input;
 
-        [Documentation("Just a demo public class constructor with two parameters")]
-        public PublicClass(int input1, int input2)
+        /// <summary>
+        ///     Just a demo public class constructor with two parameters
+        /// </summary>
+        /// <param name="input1">input 1 doc</param>
+        /// <param name="input2">input 2 doc</param>
+        [Documentation("Documentation attribute for public class constructor with two parameters")]
+        public PublicClass(int input1, int? input2)
         {
             PrivateProperty = input1;
-            PublicProperty = input2;
+            PublicProperty = input2.Value;
         }
 
         [Obsolete("Use Public Property instead", false)]
@@ -44,7 +52,9 @@ namespace TestAssembly
 
         public string PublicSetProperty { private get; set; }
 
-        [Documentation("Dummy Public Static Property doing absolutely nothing")]
+        /// <summary>
+        ///     Dummy Public Static Property doing absolutely nothing
+        /// </summary>
         public static double? PublicStaticProperty { get; set; }
 
         [Obsolete("Use Public Method instead", false)]
@@ -67,7 +77,7 @@ namespace TestAssembly
 
         public Collection<object> Query() => null;
 
-        [Documentation("returns the element count of the input parameter")]
+        /// <returns> the element count of the input parameter</returns>
         public List<object> Table(List<List<string>> list) => new List<object> {list.Count};
 
         public class NestedClass

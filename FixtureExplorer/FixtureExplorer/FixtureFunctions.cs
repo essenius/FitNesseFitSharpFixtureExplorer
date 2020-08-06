@@ -1,4 +1,4 @@
-﻿// Copyright 2016-2019 Rik Essenius
+﻿// Copyright 2016-2020 Rik Essenius
 //
 //   Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 //   except in compliance with the License. You may obtain a copy of the License at
@@ -17,13 +17,17 @@ using FixtureExplorer.Helpers;
 
 namespace FixtureExplorer
 {
+    /// <summary>FitSharp fixture to show the valid methods that fixture supports</summary>
     public class FixtureFunctions : TableTypeFixture
     {
+        /// <summary>Initialization with an assembly name</summary>
         public FixtureFunctions(string assemblyName) : base(assemblyName)
         {
         }
 
-        private static List<object> ListWithHeaderRow => new List<object>
+        /// <summary>Return a new result list with a header row</summary>
+        /// <remarks>Part of the Template pattern for DoTable</remarks>
+        protected override List<object> ListWithHeaderRow => new List<object>
         {
             new List<string>
             {
@@ -39,42 +43,30 @@ namespace FixtureExplorer
             }
         };
 
-        /// <summary>
-        ///     Table Table interface - returns all properties methods from all classes that FitNesse can see
-        ///     This shows which methods can be used in script tables.
-        /// </summary>
-        /// <param name="table">ignored - part of the FitNesse TableTable contract</param>
-        /// <returns>List of methods/properties in the FitNesse Table Table format</returns>
-        public override List<object> DoTable(List<List<string>> table)
+        /// <summary>Add a documentation row of all constructors of the given type to the result list</summary>
+        /// <remarks>Part of the Template pattern for DoTable</remarks>
+        protected override void AddToList(List<object> result, Type type)
         {
-            var returnList = ListWithHeaderRow;
-
-            foreach (var type in ClassesVisibleToFitNesse.OrderBy(type => type.Name))
+            foreach (var methodInfo in MethodBaseDocumenter.RelevantMethods(type).OrderBy(method => RealName(method.Name)))
             {
-                foreach (var methodInfo in MethodHelper.RelevantMethods(type).OrderBy(method => RealName(method.Name)))
+                var methodHelper = new FixtureDocumenter(methodInfo);
+                var deprecationMessage = methodHelper.DeprecationMessage;
+                var documentation = methodHelper.MethodBaseDocumentation;
+                documentation = string.Empty + deprecationMessage + documentation;
+                var scope = methodHelper.Scope;
+                if (string.IsNullOrEmpty(documentation) && scope.Contains("internal"))
                 {
-                    var methodHelper = new MethodHelper(methodInfo, type);
-                    var deprecationMessage = methodHelper.DeprecationMessage();
-                    var documentation = methodHelper.Documentation();
-                    documentation = string.Empty + deprecationMessage + documentation;
-                    var scope = methodHelper.Scope;
-                    if (string.IsNullOrEmpty(documentation) && (scope.Contains("internal") || scope.Contains("private")))
-                    {
-                        documentation = "[Internal use only. Do not use in tests]";
-                    }
-                    returnList.Add(Row(type, scope, methodInfo, methodHelper, documentation));
+                    documentation = "[Internal use only. Do not use in tests]";
                 }
+                result.Add(Row(type, scope, methodInfo, methodHelper, documentation));
             }
-            return returnList;
         }
 
-        private static string RealName(string reflectedName)
-        {
-            if (reflectedName.StartsWith("get_", StringComparison.Ordinal) || reflectedName.StartsWith("set_", StringComparison.Ordinal)) return reflectedName.Substring(4);
-            return reflectedName;
-        }
+        /// <summary>The real name (i.e. without get_ or set) of a member</summary>
+        private static string RealName(string reflectedName) => new GracefulNamer(reflectedName).RealName;
 
-        private static List<string> Row(Type type, IEnumerable<string> scope, MethodInfo methodInfo, MethodHelper method, string documentation)
+        /// <summary>A row with a function specification</summary>
+        private static List<string> Row(Type type, IEnumerable<string> scope, MethodInfo methodInfo, FixtureDocumenter method, string documentation)
         {
             var namer = new GracefulNamer(methodInfo.Name);
             return new List<string>

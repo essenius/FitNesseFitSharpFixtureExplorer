@@ -1,4 +1,4 @@
-﻿// Copyright 2016-2019 Rik Essenius
+﻿// Copyright 2016-2020 Rik Essenius
 //
 //   Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 //   except in compliance with the License. You may obtain a copy of the License at
@@ -16,11 +16,17 @@ namespace TestAssembly
 {
     [ExcludeFromCodeCoverage]
     [SuppressMessage("ReSharper", "UnusedMember.Global", Justification = "Used by FitSharp")]
+  
     public class ClassNotSupportingDecisionTable
     {
         public string IntMethodWithParam(Tuple<int?, decimal?> param) => param.ToString();
 
-        [Documentation("Writes the two params concatenated")]
+        /// <summary>
+        /// Writes the two params concatenated
+        /// </summary>
+        /// <param name="param1">param1 doc</param>
+        /// <param name="param2">param2 doc</param>
+        [Documentation("Documentation Attribute - Writes the two params concatenated")]
         public void VoidMethodWithTwoParams(string param1, int? param2) => Console.WriteLine(param1 + param2);
     }
 }
