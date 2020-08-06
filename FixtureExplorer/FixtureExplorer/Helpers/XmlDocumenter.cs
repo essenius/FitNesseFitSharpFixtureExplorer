@@ -90,7 +90,7 @@ namespace FixtureExplorer.Helpers
         /// </summary>
         /// <returns>the combined documentation</returns>
         /// <remarks>the XML file must be valid XML documentation format. Invalid entries are ignored.</remarks>
-        /// <see cref="https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/xmldoc/" />
+        /// <see href="https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/xmldoc/" />
         private static string DocumentationFor(string key)
         {
             Documentation.TryGetValue(key, out var documentation);
