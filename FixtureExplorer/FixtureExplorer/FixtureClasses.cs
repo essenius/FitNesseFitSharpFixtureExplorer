@@ -11,6 +11,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using FixtureExplorer.Helpers;
 
@@ -42,6 +43,7 @@ namespace FixtureExplorer
         /// <remarks>Part of the Template pattern for DoTable</remarks>
         protected override void AddToList(List<object> result, Type type)
         {
+            Debug.Assert(result != null, "result != null");
             foreach (var constructor in type.GetConstructors())
             {
                 var documenter = new MethodBaseDocumenter(constructor);
@@ -67,7 +69,7 @@ namespace FixtureExplorer
 
         /// <param name="type">the fixture type to inspect</param>
         /// <returns>a list of FitNesse tables that the type support</returns>
-        public static IList<string> SupportedTables(Type type)
+        internal static IList<string> SupportedTables(Type type)
         {
             var tables = new List<string>();
             foreach (var methodInfo in MethodBaseDocumenter.RelevantMethods(type))

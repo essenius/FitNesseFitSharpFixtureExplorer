@@ -49,7 +49,6 @@ namespace FixtureExplorer
         /// <summary>The Table Table interface for FitSharp</summary>
         /// <param name="table">ignored, required for the interface</param>
         /// <remarks>uses the Template pattern, ListWithHeaderRow and AddToList are overriden in derived classes</remarks>
-        [SuppressMessage("ReSharper", "UnusedParameter.Global", Justification = "FitSharp signature")]
         [SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "FitSharp signature")]
 
         public List<object> DoTable(List<List<string>> table)
