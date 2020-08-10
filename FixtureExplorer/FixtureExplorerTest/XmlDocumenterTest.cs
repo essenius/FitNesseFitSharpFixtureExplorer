@@ -24,9 +24,9 @@ namespace FixtureExplorerTest
             var doc = new XmlDocumenter(classType);
             Assert.AreEqual("XmlDocumenterTestClass()", doc.ConstructorDocumentation(classType.GetConstructors()[0]));
             var echoMethod = classType.GetMethod("Echo");
-            Assert.AreEqual("Echo(object). Remarks: Not very interesting. Requires: nothing. Returns: itself", doc.MethodBaseDocumentation(echoMethod));
+            Assert.AreEqual("Echo(object). Remarks: Not very interesting. See Method 1. Requires: nothing. Returns: itself", doc.MethodBaseDocumentation(echoMethod));
             var method1 = classType.GetMethod("Method1");
-            Assert.AreEqual("Returns: the length of the string representation of Field1", doc.MethodBaseDocumentation(method1));
+            Assert.AreEqual("Returns: the length of the string representation of Field1. See Echo", doc.MethodBaseDocumentation(method1));
             var property = classType.GetMethod("get_ArrayProperty");
             Assert.AreEqual("Remarks: ArrayProperty. Guarantees: nothing", doc.MethodBaseDocumentation(property));
             var constructor = classType.GetConstructor(new[] {typeof(double?)});

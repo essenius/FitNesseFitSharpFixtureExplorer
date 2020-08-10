@@ -108,12 +108,19 @@ namespace FixtureExplorer.Helpers
                     var name = entry.Attributes?.GetNamedItem("name")?.InnerText;
                     if (!string.IsNullOrEmpty(name) && !string.IsNullOrEmpty(entry.InnerText))
                     {
-                        parameters.Add(name + ": " + entry.InnerText);
+                        parameters.Add(name + ": " + TextContent(entry));
                     }
                 }
                 else
                 {
-                    docDict.Add(entry.Name, entry.InnerText);
+                    try
+                    {
+                        docDict.Add(entry.Name, TextContent(entry));
+                    }
+                    catch (ArgumentException)
+                    {
+                        Console.WriteLine("Could not add '" + entry.Name + "' for key '" + key + "'. Ignoring");
+                    }
                 }
             }
             if (parameters.Count > 0)
@@ -122,6 +129,26 @@ namespace FixtureExplorer.Helpers
             }
 
             return AssembleResult(docDict);
+        }
+
+        ///<summary>Get the inner text, but also include references from 'see' and 'seealso' elements</summary> 
+        ///<remarks>For references, gets the graceful name of the entry after the last dot before the first parenthesis (i.e. ignores class references and parameters)</remarks>
+        private static string TextContent(XmlNode entry)
+        {
+            var textResult = "";
+            foreach (XmlNode child in entry.ChildNodes)
+            {
+                if (child is XmlElement childElement && childElement.HasAttribute("cref"))
+                {
+                    var name = childElement.GetAttribute("cref").Split('(').First().Split('.').Last();
+                    textResult += new GracefulNamer(name).Regrace;
+                }
+                else
+                {
+                    textResult += child.InnerText;
+                }
+            }
+            return textResult;
         }
 
         /// <summary>Parse an XML string into an XmlDocument.</summary>

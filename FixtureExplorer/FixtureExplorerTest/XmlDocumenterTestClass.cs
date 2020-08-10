@@ -38,14 +38,15 @@ namespace FixtureExplorerTest
         public int[][] ArrayProperty { get; set; }
 
         /// <summary>Echo(object)</summary>
-        /// <remarks>Not very interesting</remarks>
+        /// <remarks>Not very interesting. See <seealso cref="Method1"/></remarks>
         /// <requires>nothing</requires>
         /// <returns>itself</returns>
+        /// <summary>forcing ignore of summary</summary>
         public object Echo(ref object input) => input;
 
         /// <returns>
         ///     the length of
-        ///     the string representation of Field1
+        ///     the string representation of Field1. See <see cref="Echo"/>
         /// </returns>
         public int Method1() => Field1.ToString().Length;
 

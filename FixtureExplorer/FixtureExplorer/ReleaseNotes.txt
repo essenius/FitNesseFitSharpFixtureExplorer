@@ -5,3 +5,4 @@
 2.1.1 Formatting changes for reporting internal members
 2.1.2 Internal optimization in NameStateMachine, bug fix in DoTableTest
 2.2.0 Support for XML Documentation
+2.2.1 Ignore multiple occurrences of the same documentation key (e.g. summary), support 'see' and 'seealso'
