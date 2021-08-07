@@ -17,7 +17,6 @@ using System.Text;
 
 namespace FixtureExplorer.Helpers
 {
-    [SuppressMessage("ReSharper", "UnusedMember.Global", Justification = "API for FitSharp")]
     internal class GracefulNamer
     {
         private readonly string _fixtureName;
@@ -65,7 +64,7 @@ namespace FixtureExplorer.Helpers
                         currentChar == separator)
                     {
                         // Add a space if this is a new separator
-                        if (!wasSeparator && currentChar != separator) result.Append(" ");
+                        if (!wasSeparator && currentChar != separator) result.Append(' ');
                         wasSeparator = currentChar == separator;
                     }
 

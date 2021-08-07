@@ -12,28 +12,30 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using FixtureExplorer;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using TestAssembly;
 
 namespace FixtureExplorerTest
 {
     [TestClass]
     public class FixtureFunctionsTest
     {
-        [TestMethod, DeploymentItem("TestAssemblyFunctions.txt")]
+        [TestMethod, DeploymentItem("TestAssemblyFunctions.txt"), DeploymentItem("TestAssembly.xml")]
         public void FixtureFunctionsDoTableTest()
         {
-            var fixture = new FixtureFunctions("..\\..\\..\\TestAssembly\\bin\\Debug\\TestAssembly.dll");
+            var location = Assembly.GetAssembly(typeof(PublicClass)).Location;
+
+            var fixture = new FixtureFunctions(location);
             var result = fixture.DoTable(null);
 
-            using (var expectedFile = new StreamReader("TestAssemblyFunctions.txt"))
+            using var expectedFile = new StreamReader("TestAssemblyFunctions.txt");
+            foreach (List<string> row in result)
             {
-                foreach (List<string> row in result)
-                {
-                    var line = expectedFile.ReadLine();
-                    var rowString = row.Aggregate("|", (current, cell) => current + cell + "|");
-                    Assert.AreEqual(line, rowString);
-                }
+                var line = expectedFile.ReadLine();
+                var rowString = row.Aggregate("|", (current, cell) => current + cell + "|");
+                Assert.AreEqual(line, rowString);
             }
         }
 

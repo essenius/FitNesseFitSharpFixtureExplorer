@@ -9,11 +9,12 @@
 //   is distributed on an "AS IS" BASIS WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //   See the License for the specific language governing permissions and limitations under the License.
 
+using FixtureExplorer;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using FixtureExplorer;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Reflection;
 using TestAssembly;
 
 namespace FixtureExplorerTest
@@ -21,21 +22,21 @@ namespace FixtureExplorerTest
     [TestClass]
     public class FixtureClassesTest
     {
-        [TestMethod, DeploymentItem("TestAssemblyClasses.txt")]
+        [TestMethod, DeploymentItem("TestAssemblyClasses.txt"), DeploymentItem("TestAssembly.xml")]
         public void FixtureClassesDoTableTest()
         {
+            var publicClass = new PublicClass(5);
+            var location = Assembly.GetAssembly(typeof(PublicClass)).Location;
             // forcing use of the abstract DoTable function, which should delegate to the subclass
-            TableTypeFixture fixture = new FixtureClasses("..\\..\\..\\TestAssembly\\bin\\Debug\\TestAssembly.dll");
+            TableTypeFixture fixture = new FixtureClasses(location);
             var result = fixture.DoTable(null);
 
-            using (var expectedFile = new StreamReader("TestAssemblyClasses.txt"))
+            using var expectedFile = new StreamReader("TestAssemblyClasses.txt");
+            foreach (List<string> row in result)
             {
-                foreach (List<string> row in result)
-                {
-                    var line = expectedFile.ReadLine();
-                    var rowString = row.Aggregate("|", (current, cell) => current + cell + "|");
-                    Assert.AreEqual(line, rowString);
-                }
+                var line = expectedFile.ReadLine();
+                var rowString = row.Aggregate("|", (current, cell) => current + cell + "|");
+                Assert.AreEqual(line, rowString);
             }
         }
 

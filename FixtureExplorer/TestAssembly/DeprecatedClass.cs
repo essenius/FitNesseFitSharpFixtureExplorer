@@ -15,9 +15,7 @@ using System.Diagnostics.CodeAnalysis;
 namespace TestAssembly
 {
     /// <summary>A deprecated class</summary>
-    [ExcludeFromCodeCoverage, Obsolete("Use Public Class instead"),
-     SuppressMessage("ReSharper", "UnusedMember.Global", Justification = "Used by FixtureExplorer"),
-     SuppressMessage("ReSharper", "UnusedMember.Local", Justification = "Used by FixtureExplorer")]
+    [ExcludeFromCodeCoverage, Obsolete("Use Public Class instead")]
     public class DeprecatedClass
     {
         private readonly string _parameter;

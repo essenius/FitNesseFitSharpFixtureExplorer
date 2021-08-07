@@ -11,7 +11,6 @@
 
 using FixtureExplorer.Helpers;
 using System.Collections.Generic;
-using System.Runtime.Remoting.Messaging;
 
 namespace FixtureExplorerTest
 {

@@ -19,7 +19,6 @@ using System.Reflection;
 namespace FixtureExplorer
 {
     /// <summary>Definition of a generic TableType fixture. Uses the Template pattern</summary>
-    [SuppressMessage("ReSharper", "UnusedMember.Global", Justification = "Used by FitSharp")]
     public abstract class TableTypeFixture
     {
         private readonly string _assemblyName;

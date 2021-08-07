@@ -17,7 +17,7 @@ using System.Globalization;
 
 namespace TestAssembly
 {
-    [ExcludeFromCodeCoverage, SuppressMessage("ReSharper", "UnusedMember.Global", Justification = "Used by FitSharp")]
+    [ExcludeFromCodeCoverage]
     public class PublicClass
     {
         /// <summary>
@@ -47,7 +47,6 @@ namespace TestAssembly
         private int PrivateProperty { get; set; }
         public bool PublicGetProperty { get; private set; }
 
-        [SuppressMessage("ReSharper", "AutoPropertyCanBeMadeGetOnly.Global", Justification = "Needed for testing")]
         public int PublicProperty { get; set; }
 
         public string PublicSetProperty { private get; set; }
@@ -72,7 +71,6 @@ namespace TestAssembly
         public string PublicMethodTwoParams(double doubleParam, decimal decimalParam) =>
             (doubleParam + Convert.ToDouble(decimalParam)).ToString(CultureInfo.InvariantCulture);
 
-        [SuppressMessage("ReSharper", "ParameterTypeCanBeEnumerable.Global", Justification = "FitSharp doesn't deal with enumerables")]
         public static IEnumerable<byte> PublicStaticMethod(List<byte> list) => list;
 
         public Collection<object> Query() => null;

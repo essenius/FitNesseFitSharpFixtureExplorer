@@ -17,7 +17,7 @@ namespace TestAssembly
     /// <summary>
     ///     WrongTableClass is a fixture with a wrong Table or Query Signature, so should not be recognized as table
     /// </summary>
-    [ExcludeFromCodeCoverage, SuppressMessage("ReSharper", "UnusedMember.Global", Justification = "Used by FitSharp")]
+    [ExcludeFromCodeCoverage]
     public class WrongTableClass
     {
         public static Dictionary<string, string> FixtureDocumentation { get; } = new Dictionary<string, string>

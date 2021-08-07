@@ -1,0 +1,361 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>FistureExplorer</name>
+    </assembly>
+    <members>
+        <member name="T:FixtureExplorer.DocumentationAttribute">
+            <summary>Documentation mechanism for fixtures.</summary>
+            <remarks>Superseded by using XML documentation, but still supported for older fixtuer versions</remarks>
+        </member>
+        <member name="M:FixtureExplorer.DocumentationAttribute.#ctor(System.String)">
+            <summary>Define the documentation</summary>
+        </member>
+        <member name="P:FixtureExplorer.DocumentationAttribute.Message">
+            <summary>the documentation to be shown</summary>
+        </member>
+        <member name="T:FixtureExplorer.FixtureClasses">
+            <summary>Fixture to show information about the classes in an assembly</summary>
+        </member>
+        <member name="M:FixtureExplorer.FixtureClasses.#ctor(System.String)">
+            <summary>Initialize the fixture with an assembly name</summary>
+        </member>
+        <member name="P:FixtureExplorer.FixtureClasses.ListWithHeaderRow">
+            <summary>Return a new result list with a header row</summary>
+            <remarks>Part of the Template pattern for DoTable</remarks>
+        </member>
+        <member name="M:FixtureExplorer.FixtureClasses.AddToList(System.Collections.Generic.List{System.Object},System.Type)">
+            <summary>Add a documentation row of all constructors of the given type to the result list</summary>
+            <remarks>Part of the Template pattern for DoTable</remarks>
+        </member>
+        <member name="M:FixtureExplorer.FixtureClasses.Row(System.String,System.String,System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String},System.String)">
+            <summary>A row of constructor documentation elements</summary>
+        </member>
+        <member name="M:FixtureExplorer.FixtureClasses.SupportedTables(System.Type)">
+            <param name="type">the fixture type to inspect</param>
+            <returns>a list of FitNesse tables that the type support</returns>
+        </member>
+        <member name="T:FixtureExplorer.FixtureFunctions">
+            <summary>FitSharp fixture to show the valid methods that fixture supports</summary>
+        </member>
+        <member name="M:FixtureExplorer.FixtureFunctions.#ctor(System.String)">
+            <summary>Initialization with an assembly name</summary>
+        </member>
+        <member name="P:FixtureExplorer.FixtureFunctions.ListWithHeaderRow">
+            <summary>Return a new result list with a header row</summary>
+            <remarks>Part of the Template pattern for DoTable</remarks>
+        </member>
+        <member name="M:FixtureExplorer.FixtureFunctions.AddToList(System.Collections.Generic.List{System.Object},System.Type)">
+            <summary>Add a documentation row of all constructors of the given type to the result list</summary>
+            <remarks>Part of the Template pattern for DoTable</remarks>
+        </member>
+        <member name="M:FixtureExplorer.FixtureFunctions.RealName(System.String)">
+            <summary>The real name (i.e. without get_ or set) of a member</summary>
+        </member>
+        <member name="M:FixtureExplorer.FixtureFunctions.Row(System.Type,System.Collections.Generic.IEnumerable{System.String},System.Reflection.MethodInfo,FixtureExplorer.Helpers.FixtureDocumenter,System.String)">
+            <summary>A row with a function specification</summary>
+        </member>
+        <member name="T:FixtureExplorer.Helpers.AttributeDocumenter">
+            <summary>Use the Documentation attribute to retrieve documentation. Superseded by XML Documentation, but still supported</summary>
+        </member>
+        <member name="P:FixtureExplorer.Helpers.AttributeDocumenter.TypeDeprecationMessage">
+            <returns>Class deprecation message if obsolete, else an empty string</returns>
+        </member>
+        <member name="M:FixtureExplorer.Helpers.AttributeDocumenter.ConstructorDocumentation(System.Reflection.ConstructorInfo)">
+            <returns>constructor documentation if available, else the class documentation.</returns>
+        </member>
+        <member name="M:FixtureExplorer.Helpers.AttributeDocumenter.MethodBaseDocumentation(System.Reflection.MethodBase)">
+            <returns>the documentation for the method base</returns>
+        </member>
+        <member name="M:FixtureExplorer.Helpers.AttributeDocumenter.Attribute``1(System.Reflection.MemberInfo)">
+            <returns>The indicated attribute for the member if available, null otherwise</returns>
+        </member>
+        <member name="M:FixtureExplorer.Helpers.AttributeDocumenter.AttributeBase(System.Reflection.MemberInfo)">
+            <summary>
+                Under the hood Properties are get and set methods. But attributes are only linked to the Property members.
+                So if we have a property, we need to get the attributes from the Property member. Otherwise we take the methodBase.
+            </summary>
+            <remarks>Requires: methodBase != null and methodBase.DeclaringType != null</remarks>
+        </member>
+        <member name="M:FixtureExplorer.Helpers.AttributeDocumenter.DeprecationMessage(System.Reflection.MemberInfo,System.String)">
+            <returns>[Deprecated] with the ObsoleteAttribute Message if available, empty string if not Obsolete</returns>
+        </member>
+        <member name="M:FixtureExplorer.Helpers.AttributeDocumenter.DocumentationFor(System.Reflection.MemberInfo)">
+            <returns>the Message property of the Documentation attribute of the member if available, an empty string otherwise</returns>
+        </member>
+        <member name="M:FixtureExplorer.Helpers.AttributeDocumenter.MethodBaseDeprecationMessage(System.Reflection.MethodBase)">
+            <returns>The Deprecation Message of the methodBase</returns>
+        </member>
+        <member name="T:FixtureExplorer.Helpers.DictionaryDocumenter">
+            <summary>
+                This is the classical way of documenting a fixture: via a public static Dictionary&lt;string, string&gt;
+                FixtureDocumentation property. It was replaced by the XMLDocumenter mechanism, but for backward compatibility with
+                older fixtures it is still suppported.
+            </summary>
+        </member>
+        <member name="M:FixtureExplorer.Helpers.DictionaryDocumenter.#ctor(System.Type)">
+            <summary>Get the dictionary for the indicate type</summary>
+        </member>
+        <member name="M:FixtureExplorer.Helpers.DictionaryDocumenter.ConstructorDocumentation(System.Reflection.ConstructorInfo)">
+            <remarks>IDocumenter interface implementation. Defers to MethodBaseDocumentation as it's the same</remarks>
+        </member>
+        <member name="M:FixtureExplorer.Helpers.DictionaryDocumenter.MethodBaseDocumentation(System.Reflection.MethodBase)">
+            <remarks>IDocumenter interface implementation</remarks>
+        </member>
+        <member name="M:FixtureExplorer.Helpers.DictionaryDocumenter.DocumentationFor(System.String)">
+            <summary>
+                If the documentation is specific about the number of parameters, prioritize it. If not, split out the number
+                of parameters and take the base name. If documentation exists return it, else return the empty string
+            </summary>
+            <remarks>With constructors splitting out implies returning the class documentation</remarks>
+        </member>
+        <member name="T:FixtureExplorer.Helpers.FixtureDocumenter">
+            <summary>
+                Get documentation from a method via reflection, and determines based on the signatures what kind of fixture tables
+                the method can support.
+            </summary>
+            <remarks>It obtains access to the documentation retrieval via the sublassing of MethodBaseDocumenter</remarks>
+        </member>
+        <member name="P:FixtureExplorer.Helpers.FixtureDocumenter.HasPropertySignature">
+            <summary>
+                A property signature means:
+                not having a return type and a single parameter (setter), or
+                having a return type and no parameters (getter) and not being a Query method
+            </summary>
+        </member>
+        <member name="P:FixtureExplorer.Helpers.FixtureDocumenter.HasQuerySignature">
+            <summary> A Query signature means returning a List and not having parameters</summary>
+        </member>
+        <member name="P:FixtureExplorer.Helpers.FixtureDocumenter.HasTableSignature">
+            <summary>A Table fixtures must have a list as return value, and a list of lists as single parameter</summary>
+        </member>
+        <member name="P:FixtureExplorer.Helpers.FixtureDocumenter.SupportsDecisionTableOptional">
+            <remarks>
+                Decision tables can have an optional Table method executed just after the constructor,
+                passing  a list of lists containing all cells of the table except the very first row.
+                It can also have a couple of void methods: BeginTable, EndTable, Reset and Execute.
+            </remarks>
+        </member>
+        <member name="P:FixtureExplorer.Helpers.FixtureDocumenter.SupportsQueryTable">
+            <summary>A method supports the Query table if it is called Query and has a Query signature</summary>
+        </member>
+        <member name="P:FixtureExplorer.Helpers.FixtureDocumenter.SupportsQueryTableOptional">
+            <summary>Query tables have an optional Table method with a Table signature</summary>
+        </member>
+        <member name="P:FixtureExplorer.Helpers.FixtureDocumenter.SupportsTableTable">
+            <summary>A Table Table requires a DoTable method with a Table signature</summary>
+        </member>
+        <member name="P:FixtureExplorer.Helpers.FixtureDocumenter.TablesSupported">
+            <summary>The list of FitNesse table types that the method can support.</summary>
+        </member>
+        <member name="P:FixtureExplorer.Helpers.GracefulNamer.Disgrace">
+            <summary>Convert a graceful name into a method name using a state machine</summary>
+        </member>
+        <member name="P:FixtureExplorer.Helpers.GracefulNamer.IsGetProperty">
+            <returns>Is this a Get property?</returns>
+        </member>
+        <member name="P:FixtureExplorer.Helpers.GracefulNamer.IsProperty">
+            <returns>Is this a property?</returns>
+        </member>
+        <member name="P:FixtureExplorer.Helpers.GracefulNamer.IsSetProperty">
+            <returns>Is this a Set property?</returns>
+        </member>
+        <member name="P:FixtureExplorer.Helpers.GracefulNamer.RealName">
+            <returns>The real name of the member (i.e, without get_ or set_ for properties)</returns>
+        </member>
+        <member name="P:FixtureExplorer.Helpers.GracefulNamer.Regrace">
+            <summary>Convert a method name into a graceful name</summary>
+        </member>
+        <member name="P:FixtureExplorer.Helpers.GracefulNamer.Type">
+            <returns>is this a Get property?</returns>
+        </member>
+        <member name="M:FixtureExplorer.Helpers.GracefulNamer.GracefulName(System.Type)">
+            <returns>the graceful name of a type</returns> 
+        </member>
+        <member name="T:FixtureExplorer.Helpers.IDocumenter">
+            <summary>The interface that encapsulates how to get constructor or method documentation</summary>
+        </member>
+        <member name="T:FixtureExplorer.Helpers.MethodBaseDocumenter">
+            <remarks>
+                Using the Strategy pattern to support multiple documentation mechanisms (attribute, dictionary and xml).
+                MethodBase supports both constructors and methods
+            </remarks>
+        </member>
+        <member name="F:FixtureExplorer.Helpers.MethodBaseDocumenter.RelevantBindings">
+            <remarks>
+                All public or internal, static or non-static methods. Includes properties (those are just methods under the hood).
+                Although FitSharp can see protected and private methods, convention is not to deliberately expose them.
+            </remarks>
+        </member>
+        <member name="F:FixtureExplorer.Helpers.MethodBaseDocumenter._attributeDocumenter">
+            <summary>AttributeDocumenter is a special case because of the Obsolete attributes</summary>
+        </member>
+        <member name="F:FixtureExplorer.Helpers.MethodBaseDocumenter._documenters">
+            <summary>the documenters we use</summary>
+        </member>
+        <member name="F:FixtureExplorer.Helpers.MethodBaseDocumenter._methodBase">
+            <summary>the MethodBase we're working with</summary>
+        </member>
+        <member name="P:FixtureExplorer.Helpers.MethodBaseDocumenter.ConstructorDocumentation">
+            <returns>The concatenation of type documentation retrieved via the different mechanisms.</returns>
+            <remarks>here is where we use the Strategy pattern to hide the actual mechanism</remarks>
+        </member>
+        <member name="P:FixtureExplorer.Helpers.MethodBaseDocumenter.DeprecationMessage">
+            <returns>The corresponding message if the method or the class is declared obsolete, an empty string otherwise.</returns>
+            <remarks>This only uses the AttributeDocumenter as we have no choice here</remarks>
+        </member>
+        <member name="P:FixtureExplorer.Helpers.MethodBaseDocumenter.MethodBaseDocumentation">
+            <returns>the concatenation of method documentation retrieved via the different mechanisms</returns>
+            <remarks>Another use of the Strategy pattern</remarks>
+        </member>
+        <member name="P:FixtureExplorer.Helpers.MethodBaseDocumenter.MethodsToSkip">
+            <remarks>
+                Hide some methods inherited from Object - those are always there and generally not useful to mention -
+                and the static Documentation property that we defined in previous versions of the fixtures to provide more input
+                about the functions.
+            </remarks>
+        </member>
+        <member name="P:FixtureExplorer.Helpers.MethodBaseDocumenter.Parameters">
+            <summary>Returns a list parameters of the method, with gracefully named type</summary>
+        </member>
+        <member name="P:FixtureExplorer.Helpers.MethodBaseDocumenter.Scope">
+            <summary>list of public, internal or static qualifiers of the method</summary>
+            <remarks>Private not supported by design (not deliberately exposing private methods)</remarks>
+        </member>
+        <member name="M:FixtureExplorer.Helpers.MethodBaseDocumenter.ConcatenateDocumentation(System.Func{FixtureExplorer.Helpers.IDocumenter,System.String})">
+            <summary>
+                Since we allow use of more than one documentation mechanism, concatenate any non-empty responses
+                with a period and a space as separators.
+            </summary>
+            <remarks>
+                We're using a lambda function here to allow using both function (Constructor) and class (MethodBase)
+                documentation
+            </remarks>
+            <param name="documentationRetriever"></param>
+        </member>
+        <member name="M:FixtureExplorer.Helpers.MethodBaseDocumenter.RelevantMethods(System.Type)">
+            <summary>Relevant methods are not protected or private, and are not methods we want to ignore.</summary>
+        </member>
+        <member name="T:FixtureExplorer.Helpers.NameStateMachine">
+            <summary>
+                this state machine converts a graceful name (i.e. with spaces and potentially not capitalized)
+                into a C# method name. It takes over letters and digits, ignores other characters, and capitalizes the first
+                letter of each word (i.e. PascalCase)
+            </summary>
+        </member>
+        <member name="M:FixtureExplorer.Helpers.NameStateMachine.#ctor">
+            <summary>
+                We start the state machine in the Out Of Word state
+            </summary>
+        </member>
+        <member name="M:FixtureExplorer.Helpers.NameStateMachine.NameEventFor(System.Char)">
+            <returns>the name event corresponding to the input character (Digit, Letter or Other)</returns>
+        </member>
+        <member name="M:FixtureExplorer.Helpers.NameStateMachine.NextChar(System.Char)">
+            <returns>the next character in the right casing, or empty string if not in a word</returns>
+            <remarks>
+                Uses the combination of current state and and name event to determine next state and next action.
+                Next action decides what we do with the character (to uppercase, as-is or remove)
+            </remarks>
+        </member>
+        <member name="T:FixtureExplorer.Helpers.XmlDocumenter">
+            <summary>
+                Use the XML documentation facility of C# to provide documentation. This expects the documentation XML file in the same folder
+                as the assembly, with the same base name.
+            </summary>
+        </member>
+        <member name="M:FixtureExplorer.Helpers.XmlDocumenter.#ctor(System.Type)">
+            <summary>Load the documentation file into a dictionary</summary>
+            <remarks>As multiple calls with the same assembly are likely, we're only loading the  dictionary if the type changes</remarks>
+        </member>
+        <member name="P:FixtureExplorer.Helpers.XmlDocumenter.XmlFilePath">
+            <returns>the path of the documentation XML file. Assumes that the assembly (+code base) exists</returns>
+        </member>
+        <member name="M:FixtureExplorer.Helpers.XmlDocumenter.ConstructorDocumentation(System.Reflection.ConstructorInfo)">
+            <remarks>IDocumenter interface implementation</remarks>
+        </member>
+        <member name="M:FixtureExplorer.Helpers.XmlDocumenter.MethodBaseDocumentation(System.Reflection.MethodBase)">
+            <remarks>IDocumenter interface implementation</remarks>
+        </member>
+        <member name="M:FixtureExplorer.Helpers.XmlDocumenter.AssembleResult(System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+                As XML documentation has multiple sections (summary, remarks, returns, etc.) we need to merge these. We start
+                with the summary if it's there, and then we add all other available sections based on the sequence they were entered.
+            </summary>
+        </member>
+        <member name="M:FixtureExplorer.Helpers.XmlDocumenter.Capitalize(System.String)">
+            <requires>key must be at least one character</requires>
+        </member>
+        <member name="M:FixtureExplorer.Helpers.XmlDocumenter.DocumentationFor(System.String)">
+            <summary>
+                Get documentation from the loaded dictionary. Parses the XML section to extract the sections belonging to the element,
+                and combines them into a single string
+            </summary>
+            <returns>the combined documentation</returns>
+            <remarks>the XML file must be valid XML documentation format. Invalid entries are ignored.</remarks>
+            <see href="https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/xmldoc/" />
+        </member>
+        <member name="M:FixtureExplorer.Helpers.XmlDocumenter.TextContent(System.Xml.XmlNode)">
+            <summary>Get the inner text, but also include references from 'see' and 'seealso' elements</summary> 
+            <remarks>For references, gets the graceful name of the entry after the last dot before the first parenthesis (i.e. ignores class references and parameters)</remarks>
+        </member>
+        <member name="M:FixtureExplorer.Helpers.XmlDocumenter.ParseXml(System.String)">
+            <summary>Parse an XML string into an XmlDocument.</summary>
+            <remarks>Assumes that the XML string is valid</remarks>
+        </member>
+        <member name="M:FixtureExplorer.Helpers.XmlDocumenter.ReadDocumentation">
+            <summary>
+                Read the documentation from the XML file into the Documentation dictionary. Each member element key gets its own entry in
+                the dictionary, and the XML section of that member becomes the value (with a root section around it).
+            </summary>
+        </member>
+        <member name="M:FixtureExplorer.Helpers.XmlDocumenter.TrimWhitespace(System.String)">
+            <summary>
+                Remove all new line characters and leading/trailing spaces from the text lines in the input, to transform documentation
+                entries (like this) into a single line without excess whitespace.
+            </summary>
+        </member>
+        <member name="T:FixtureExplorer.Helpers.XmlDocumentKey">
+            <summary>Converts the method base into a key to be used in XML documentation</summary>
+        </member>
+        <member name="M:FixtureExplorer.Helpers.XmlDocumentKey.MethodBaseKey(System.Reflection.MethodBase)">
+            <summary>Gets the key for the Method Base being handed in</summary>
+        </member>
+        <member name="M:FixtureExplorer.Helpers.XmlDocumentKey.TypeKey(System.Type)">
+            <summary>Gets the key for the Type being handed in</summary>
+        </member>
+        <member name="M:FixtureExplorer.Helpers.XmlDocumentKey.TypeSpec(System.Type,System.Boolean)">
+            <param name="type">the type to generate a documentation key for</param>
+            <param name="isParam">is the key used as a parameter in method or not</param>
+            <returns>the documentation key to search the XML documentation with</returns>
+            <remarks>does not support generic parameters, as we can't use those in the FitSharp interface anyway</remarks>
+        </member>
+        <member name="T:FixtureExplorer.TableTypeFixture">
+            <summary>Definition of a generic TableType fixture. Uses the Template pattern</summary>
+        </member>
+        <member name="M:FixtureExplorer.TableTypeFixture.#ctor(System.String)">
+            <summary>Initialize TableTypeFixture with an assembly name</summary>
+        </member>
+        <member name="P:FixtureExplorer.TableTypeFixture.ClassesVisibleToFitNesse">
+            <returns>The list of public non-static classes in the assembly (which FitSharp can work with)</returns>
+            <remarks>If a class is sealed and abstract, it's a static class. We exclude exception or attribute classes</remarks>
+        </member>
+        <member name="P:FixtureExplorer.TableTypeFixture.ListWithHeaderRow">
+            <summary>Create the DoTable result list with a header row.</summary>
+        </member>
+        <member name="M:FixtureExplorer.TableTypeFixture.AddToList(System.Collections.Generic.List{System.Object},System.Type)">
+            <summary>Add an item to the DoTable result list.</summary>
+        </member>
+        <member name="M:FixtureExplorer.TableTypeFixture.DoTable(System.Collections.Generic.List{System.Collections.Generic.List{System.String}})">
+            <summary>The Table Table interface for FitSharp</summary>
+            <param name="table">ignored, required for the interface</param>
+            <remarks>uses the Template pattern, ListWithHeaderRow and AddToList are overriden in derived classes</remarks>
+        </member>
+        <member name="M:FixtureExplorer.TableTypeFixture.FixtureAssembly">
+            <summary>Memory function delivering the assemmbly to work with</summary>
+        </member>
+        <member name="M:FixtureExplorer.TableTypeFixture.Report(System.String)">
+            <returns>the input in the format for reporting in an output cell</returns>
+        </member>
+    </members>
+</doc>

@@ -46,9 +46,9 @@ namespace FixtureExplorer.Helpers
             get
             {
                 var assembly = _type.Assembly;
-                var codeBase = Path.GetDirectoryName(assembly.CodeBase);
-                Debug.Assert(codeBase != null, nameof(codeBase) + " != null");
-                var uri = new UriBuilder(codeBase);
+                var assemblyLocation = Path.GetDirectoryName(assembly.Location);
+                Debug.Assert(assemblyLocation != null, nameof(assemblyLocation) + " != null");
+                var uri = new UriBuilder(assemblyLocation);
                 var assemblyPath = Uri.UnescapeDataString(uri.Path);
                 return Path.Combine(assemblyPath, assembly.GetName().Name + ".xml");
             }
@@ -172,18 +172,16 @@ namespace FixtureExplorer.Helpers
         {
             var xmlFile = XmlFilePath;
             if (!File.Exists(xmlFile)) return;
-            using (var streamReader = new StreamReader(xmlFile))
-            using (var xmlReader = XmlReader.Create(streamReader))
+            using var streamReader = new StreamReader(xmlFile);
+            using var xmlReader = XmlReader.Create(streamReader);
+            while (xmlReader.Read())
             {
-                while (xmlReader.Read())
-                {
-                    if (xmlReader.NodeType != XmlNodeType.Element || xmlReader.Name != "member") continue;
-                    var memberName = xmlReader["name"];
+                if (xmlReader.NodeType != XmlNodeType.Element || xmlReader.Name != "member") continue;
+                var memberName = xmlReader["name"];
 
-                    // should not occur, would imply a corrupted XML file. Checking just in case.
-                    if (memberName == null) continue;
-                    Documentation[memberName] = "<root>" + xmlReader.ReadInnerXml().Trim() + "</root>";
-                }
+                // should not occur, would imply a corrupted XML file. Checking just in case.
+                if (memberName == null) continue;
+                Documentation[memberName] = "<root>" + xmlReader.ReadInnerXml().Trim() + "</root>";
             }
         }
 
