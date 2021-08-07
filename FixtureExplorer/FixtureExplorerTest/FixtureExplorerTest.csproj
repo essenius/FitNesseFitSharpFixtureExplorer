@@ -1,12 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net5.0;net461</TargetFrameworks>
+    <TargetFrameworks>net5.0;net48</TargetFrameworks>
     <IsPackable>false</IsPackable>
     <LangVersion>8.0</LangVersion>
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
     <AnalysysMode>AllEnabledByDefault</AnalysysMode>
-    <Version>3.0.0</Version>
+    <Version>3.0.1</Version>
     <Authors>Rik Essenius</Authors>
     <Description>Unit tests for FitNesse/FitSharp fixture to explore available functions in fixture assemblies</Description>
     <Copyright>Copyright © Rik Essenius 2015-2021</Copyright>

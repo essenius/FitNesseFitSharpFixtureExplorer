@@ -7,3 +7,4 @@
 2.2.0 Support for XML Documentation
 2.2.1 Ignore multiple occurrences of the same documentation key (e.g. summary), support 'see' and 'seealso'
 3.0.0 Migration to .Net 5.0 (dual build .NET 4.6.1 and .NET 5.0)
+3.0.1 Moved from .NET 4.6.1 to .NET 4.8 for better compatibiliy with FitSharp
