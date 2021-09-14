@@ -1,7 +1,0 @@
-﻿|report:Namespace|report:Class|report:Parameters|report:Supports Table Type|report:Documentation|
-|report:Test Assembly|report:Class Not Supporting Decision Table|report:|report:Script|report:|
-|report:Test Assembly|report:Deprecated Class|report:|report:Decision, Script|report:[Deprecated class: Use Public Class instead]A deprecated class|
-|report:Test Assembly|report:Deprecated Class|report:parameter: String[,]|report:Decision, Script|report:[Deprecated class: Use Public Class instead]Documentation for constructor with one parameter. Params: { parameter: documentation for the parameter }. Documentation attribute for constructor with 1 parameter|
-|report:Test Assembly|report:Public Class|report:input: Int32|report:Decision, Query, Script|report:Just a demo public class constructor with one parameter. Documentation attribute for public class constructor with one parameter|
-|report:Test Assembly|report:Public Class|report:input1: Int32, input2: Nullable<Int32>|report:Decision, Query, Script|report:Just a demo public class constructor with two parameters. Params: { input1: input 1 doc; input2: input 2 doc }. Documentation attribute for public class constructor with two parameters|
-|report:Test Assembly|report:Wrong Table Class|report:|report:Decision, Script|report:WrongTableClass is a fixture with a wrong Table or Query Signature, so should not be recognized as table. Class with a wrong Table/Query signature, so only supports Script and Decision|
