@@ -12,9 +12,6 @@
     <Copyright>Copyright © Rik Essenius 2015-2021</Copyright>
     <RepositoryUrl>https://github.com/essenius/FitNesseFitSharFixtureExplorer</RepositoryUrl>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net5.0|AnyCPU'">
     <DocumentationFile>FixtureExplorerTest.xml</DocumentationFile>
   </PropertyGroup>
 

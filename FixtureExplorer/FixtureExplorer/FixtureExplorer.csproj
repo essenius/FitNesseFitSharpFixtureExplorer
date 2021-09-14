@@ -10,12 +10,8 @@
     <Description>A FitNesse/FitSharp fixture to explore available functions in fixture assemblies</Description>
     <Copyright>Copyright © Rik Essenius 2016-2021</Copyright>
     <RepositoryUrl>https://github.com/essenius/FitNesseFitSharFixtureExplorer</RepositoryUrl>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net5.0|AnyCPU'">
     <DocumentationFile>FixtureExplorer.xml</DocumentationFile>
   </PropertyGroup>
-
 
   <ItemGroup>
     <InternalsVisibleTo Include="FixtureExplorerTest" />

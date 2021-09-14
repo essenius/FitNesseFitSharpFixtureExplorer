@@ -10,10 +10,6 @@
     <Description>Test Assembly used by FixtureExporer tests</Description>
     <Copyright>Copyright © Rik Essenius 2017-2021</Copyright>
     <RepositoryUrl>https://github.com/essenius/FixtureExplorer</RepositoryUrl>
-
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net5.0|AnyCPU'">
     <DocumentationFile>TestAssembly.xml</DocumentationFile>
   </PropertyGroup>
 
