@@ -24,6 +24,7 @@ namespace FixtureExplorerTest
     public class FixtureFunctionsTest
     {
         [TestMethod]
+        [DeploymentItem("TestAssembly.xml")]
         public void FixtureFunctionsDoTableTest()
         {
             var expected = new List<string>
@@ -67,7 +68,6 @@ namespace FixtureExplorerTest
 
             var fixture = new FixtureFunctions(location);
             var result = fixture.DoTable(null);
-
             var expectedIndex = 0;
             foreach (List<string> row in result)
             {

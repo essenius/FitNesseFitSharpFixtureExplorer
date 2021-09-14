@@ -9,8 +9,8 @@ namespace FixtureExplorerTest
     [TestClass]
     public class MethodBaseDocumenterTest
     {
-        // this method assumes presence of TestAssembly.xml
         [TestMethod]
+        [DeploymentItem("TestAssembly.xml")]
         public void MethodBaseDocumenterTestTest1()
         {
             var c = typeof(WrongTableClass);
