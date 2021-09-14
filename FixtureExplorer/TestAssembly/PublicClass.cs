@@ -16,6 +16,8 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 
 #pragma warning disable 1591 // We're missing XML comments on purpose
+#pragma warning disable CA1041 // Provide ObsoleteAttribute message
+#pragma warning disable CA1822 // Mark members as static - intential instance, for testing
 
 namespace TestAssembly
 {
@@ -68,7 +70,7 @@ namespace TestAssembly
         public int PublicMethodParamArray(params int[] list) => list.Length;
 
         public Dictionary<int, PublicClass> PublicMethodReturningDictionary(KeyValuePair<int, PublicClass> keyValuePair) =>
-            new Dictionary<int, PublicClass> {{keyValuePair.Key, keyValuePair.Value}};
+            new Dictionary<int, PublicClass> { { keyValuePair.Key, keyValuePair.Value } };
 
         public string PublicMethodTwoParams(double doubleParam, decimal decimalParam) =>
             (doubleParam + Convert.ToDouble(decimalParam)).ToString(CultureInfo.InvariantCulture);
@@ -78,7 +80,7 @@ namespace TestAssembly
         public Collection<object> Query() => null;
 
         /// <returns> the element count of the input parameter</returns>
-        public List<object> Table(List<List<string>> list) => new List<object> {list.Count};
+        public List<object> Table(List<List<string>> list) => new List<object> { list.Count };
 
         public class NestedClass
         {

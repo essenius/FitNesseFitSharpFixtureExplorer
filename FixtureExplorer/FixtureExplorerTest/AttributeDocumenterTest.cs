@@ -10,7 +10,6 @@
 //   See the License for the specific language governing permissions and limitations under the License.
 
 using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using FixtureExplorer.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -19,8 +18,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FixtureExplorerTest
 {
-    [Obsolete("use DocTest instead"),
-     SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Test requires normal members", Scope = "Member")]
+    [Obsolete("use DocTest instead")]
     public class ObsoleteClass
     {
         [Obsolete("Overriding obsolete message")]
@@ -29,13 +27,13 @@ namespace FixtureExplorerTest
         public string Method2() => string.Empty;
     }
 
-
     [TestClass]
     public class AttributeDocumenterTest
     {
         private const BindingFlags RelevantBindings = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.Instance;
 
-        [TestMethod, Obsolete("Using obsolete classes")]
+        [TestMethod]
+        [Obsolete("Using obsolete classes")]
         public void AttributeDocumenterDeprecationTest()
         {
             var doctest = typeof(AttributeDocumenterTestClass);

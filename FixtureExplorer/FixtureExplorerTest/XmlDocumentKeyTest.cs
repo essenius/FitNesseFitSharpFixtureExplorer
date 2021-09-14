@@ -17,7 +17,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FixtureExplorerTest
 {
-    [TestClass, DeploymentItem("FixtureExplorerTest.xml")]
+    [TestClass]
     public class XmlDocumentKeyTest
     {
         [TestMethod]

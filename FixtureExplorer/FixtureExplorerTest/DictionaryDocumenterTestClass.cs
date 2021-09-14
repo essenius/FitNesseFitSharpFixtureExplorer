@@ -11,6 +11,8 @@
 
 using System.Collections.Generic;
 
+#pragma warning disable CA1822 // Mark members as static - intential instance, for testing
+
 namespace FixtureExplorerTest
 {
     internal class DictionaryDocumenterTestClass

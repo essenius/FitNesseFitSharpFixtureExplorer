@@ -18,7 +18,7 @@ namespace TestAssembly
 {
     [ExcludeFromCodeCoverage]
     [SuppressMessage("ReSharper", "UnusedMember.Global", Justification = "Used by FitSharp")]
-  
+    [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Intentional instance methods for testing")]
     public class ClassNotSupportingDecisionTable
     {
         public string IntMethodWithParam(Tuple<int?, decimal?> param) => param.ToString();

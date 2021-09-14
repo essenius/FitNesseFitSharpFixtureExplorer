@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
 #pragma warning disable 1591 // We're missing XML comments on purpose
+#pragma warning disable CA1822 // Mark members as static - intential instance, for testing
 
 namespace TestAssembly
 {

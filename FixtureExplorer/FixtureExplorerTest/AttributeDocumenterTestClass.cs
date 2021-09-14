@@ -13,6 +13,8 @@ using System;
 using FixtureExplorer;
 
 #pragma warning disable 1591 // We're missing XML comments on purpose
+#pragma warning disable CA1041 // Provide ObsoleteAttribute message
+#pragma warning disable CA1822 // Mark members as static - intential instance, for testing
 
 namespace FixtureExplorerTest
 {
@@ -26,7 +28,8 @@ namespace FixtureExplorerTest
         [Documentation("Property1 Documentation")]
         public int Property1 { get; }
 
-        [Obsolete, Documentation(null)]
+        [Obsolete]
+        [Documentation(null)]
         public void NullDocMethod()
         {
         }
