@@ -24,7 +24,7 @@ namespace FixtureExplorerTest
     public class FixtureFunctionsTest
     {
         [TestMethod]
-        [DeploymentItem("TestAssembly.xml")]
+        [DeploymentItem("TestAssembly.xml")] // only needed for .NET Framework
         public void FixtureFunctionsDoTableTest()
         {
             var expected = new List<string>

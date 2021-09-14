@@ -10,7 +10,7 @@ namespace FixtureExplorerTest
     public class MethodBaseDocumenterTest
     {
         [TestMethod]
-        [DeploymentItem("TestAssembly.xml")]
+        /* [DeploymentItem("TestAssembly.xml")] -- once is enough */
         public void MethodBaseDocumenterTestTest1()
         {
             var c = typeof(WrongTableClass);

@@ -17,7 +17,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace FixtureExplorerTest
 {
     [TestClass]
-    [DeploymentItem("FixtureExplorerTest.xml")]
+    [DeploymentItem("FixtureExplorerTest.xml")] // only needed for .NET Framework, but doesn't hurt .NET 5
 
     public class XmlDocumenterTest
     {
