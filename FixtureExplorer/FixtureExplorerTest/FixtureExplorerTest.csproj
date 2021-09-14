@@ -19,12 +19,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="FixtureExplorerTest.xml" />
-    <None Remove="TestAssemblyClasses.txt" />
-    <None Remove="TestAssemblyFunctions.txt" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Content Include="FixtureExplorerTest.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -343,6 +343,6 @@ ASALocalRun/
 
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
-/FixtureExplorer/FixtureExplorer/FistureExplorer.xml
+/FixtureExplorer/FixtureExplorer/FixtureExplorer.xml
 /FixtureExplorer/FixtureExplorerTest/FixtureExplorerTest.xml
 /FixtureExplorer/TestAssembly/TestAssembly.xml
