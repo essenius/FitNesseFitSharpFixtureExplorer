@@ -13,10 +13,4 @@
     <DocumentationFile>TestAssembly.xml</DocumentationFile>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Content Include="TestAssembly.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-
 </Project>

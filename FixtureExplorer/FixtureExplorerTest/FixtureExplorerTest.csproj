@@ -16,9 +16,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="FixtureExplorerTest.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="TestAssemblyClasses.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
