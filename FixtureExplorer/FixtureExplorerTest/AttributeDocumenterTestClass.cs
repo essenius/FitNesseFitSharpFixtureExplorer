@@ -12,6 +12,8 @@
 using System;
 using FixtureExplorer;
 
+#pragma warning disable 1591 // We're missing XML comments on purpose
+
 namespace FixtureExplorerTest
 {
     [Documentation("Class documentation")]

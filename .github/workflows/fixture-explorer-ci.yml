@@ -22,4 +22,4 @@ jobs:
     - name: Build
       run: dotnet build --no-restore .\FixtureExplorer\FixtureExplorer.sln
     - name: Test
-      run: dotnet test --no-build --verbosity normal .\FixtureExplorer\FixtureExplorer.slnn
+      run: dotnet test --no-build --verbosity normal .\FixtureExplorer\FixtureExplorer.sln

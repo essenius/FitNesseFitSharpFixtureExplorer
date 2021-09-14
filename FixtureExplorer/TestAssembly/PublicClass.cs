@@ -15,6 +15,8 @@ using System.Collections.ObjectModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 
+#pragma warning disable 1591 // We're missing XML comments on purpose
+
 namespace TestAssembly
 {
     [ExcludeFromCodeCoverage]

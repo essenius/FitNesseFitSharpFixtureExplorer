@@ -13,6 +13,8 @@ using System;
 using FixtureExplorer.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
+#pragma warning disable 1591 // We're missing XML comments on purpose
+
 namespace FixtureExplorerTest
 {
     [TestClass, DeploymentItem("FixtureExplorerTest.xml")]

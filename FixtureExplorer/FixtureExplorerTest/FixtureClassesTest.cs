@@ -17,6 +17,8 @@ using System.Linq;
 using System.Reflection;
 using TestAssembly;
 
+#pragma warning disable 1591 // We're missing XML comments on purpose
+
 namespace FixtureExplorerTest
 {
     [TestClass]
