@@ -18,9 +18,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Update="TestAssembly.xml">
+    <None Remove="TestAssembly.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="TestAssembly.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    </Content>
   </ItemGroup>
 
 </Project>

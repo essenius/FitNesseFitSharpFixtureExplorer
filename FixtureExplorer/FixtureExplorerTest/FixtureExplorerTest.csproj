@@ -19,6 +19,24 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="FixtureExplorerTest.xml" />
+    <None Remove="TestAssemblyClasses.txt" />
+    <None Remove="TestAssemblyFunctions.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="FixtureExplorerTest.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestAssemblyClasses.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestAssemblyFunctions.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.7.1" />
     <PackageReference Include="MSTest.TestAdapter" Version="2.1.1" />
     <PackageReference Include="MSTest.TestFramework" Version="2.1.1" />
@@ -28,15 +46,5 @@
   <ItemGroup>
     <ProjectReference Include="..\FixtureExplorer\FixtureExplorer.csproj" />
     <ProjectReference Include="..\TestAssembly\TestAssembly.csproj" />
-
-    <None Update="TestAssemblyClasses.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="TestAssemblyFunctions.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="FixtureExplorerTest.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
 </Project>
