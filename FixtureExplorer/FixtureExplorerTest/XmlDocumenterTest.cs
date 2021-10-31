@@ -1,4 +1,4 @@
-﻿// Copyright 2016-2020 Rik Essenius
+﻿// Copyright 2016-2021 Rik Essenius
 //
 //   Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 //   except in compliance with the License. You may obtain a copy of the License at
@@ -18,7 +18,6 @@ namespace FixtureExplorerTest
 {
     [TestClass]
     [DeploymentItem("FixtureExplorerTest.xml")] // only needed for .NET Framework, but doesn't hurt .NET 5
-
     public class XmlDocumenterTest
     {
         [TestMethod]
@@ -28,14 +27,22 @@ namespace FixtureExplorerTest
             var doc = new XmlDocumenter(classType);
             Assert.AreEqual("XmlDocumenterTestClass()", doc.ConstructorDocumentation(classType.GetConstructors()[0]));
             var echoMethod = classType.GetMethod("Echo");
-            Assert.AreEqual("Echo(object). Remarks: Not very interesting. See Method 1. Requires: nothing. Returns: itself",
-                doc.MethodBaseDocumentation(echoMethod));
+            Assert.AreEqual(
+                "Echo(object). Remarks: Not very interesting. See Method 1. Requires: nothing. Returns: itself",
+                doc.MethodBaseDocumentation(echoMethod)
+                );
             var method1 = classType.GetMethod("Method1");
-            Assert.AreEqual("Returns: the length of the string representation of Field1. See Echo", doc.MethodBaseDocumentation(method1));
+            Assert.AreEqual(
+                "Returns: the length of the string representation of Field1. See Echo",
+                doc.MethodBaseDocumentation(method1)
+                );
             var property = classType.GetMethod("get_ArrayProperty");
             Assert.AreEqual("Remarks: ArrayProperty. Guarantees: nothing", doc.MethodBaseDocumentation(property));
             var constructor = classType.GetConstructor(new[] { typeof(double?) });
-            Assert.AreEqual("XmlDocumenterTestClass(double?). Params: { input: nullable double }", doc.MethodBaseDocumentation(constructor));
+            Assert.AreEqual(
+                "XmlDocumenterTestClass(double?). Params: { input: nullable double }",
+                doc.MethodBaseDocumentation(constructor)
+                );
         }
     }
 }

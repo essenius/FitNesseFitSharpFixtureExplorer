@@ -1,4 +1,4 @@
-﻿// Copyright 2016-2021 Rik Essenius
+﻿// Copyright 2016-2020 Rik Essenius
 //
 //   Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 //   except in compliance with the License. You may obtain a copy of the License at
@@ -15,7 +15,7 @@ using System.Diagnostics.CodeAnalysis;
 #pragma warning disable 1591 // We're missing XML comments on purpose
 #pragma warning disable CA1822 // Mark members as static - intential instance, for testing
 
-namespace TestAssembly
+namespace TestAssemblyWithDocumentationAttribute
 {
     /// <summary>
     ///     WrongTableClass is a fixture with a wrong Table or Query Signature, so should not be recognized as table
@@ -25,11 +25,11 @@ namespace TestAssembly
     {
         public static Dictionary<string, string> FixtureDocumentation { get; } = new Dictionary<string, string>
         {
-            { string.Empty, "Class with a wrong Table/Query signature, so only supports Script and Decision" },
-            { "BeginTable`0", "Executed just before a Decision table" },
-            { "FixtureDocumentation", "Test data for DocumentationFor function" },
-            { "Property", "Property for testing FixtureFor" },
-            { "Query", "Doesn't really do anything" }
+            {string.Empty, "Class with a wrong Table/Query signature, so only supports Script and Decision"},
+            {"BeginTable`0", "Executed just before a Decision table"},
+            {"FixtureDocumentation", "Test data for DocumentationFor function"},
+            {"Property", "Property for testing FixtureFor"},
+            {"Query", "Doesn't really do anything"}
         };
 
         public int Property { get; set; }
@@ -47,10 +47,10 @@ namespace TestAssembly
         {
         }
 
-        public List<object> Query(int input) => new List<object> { input };
+        public List<object> Query(int input) => new List<object> {input};
 
         public int Reset() => 0;
 
-        public List<object> Table(int a, int b) => new List<object> { a, b };
+        public List<object> Table(int a, int b) => new List<object> {a, b};
     }
 }

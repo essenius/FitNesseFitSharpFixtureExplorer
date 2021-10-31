@@ -1,4 +1,4 @@
-﻿// Copyright 2016-2020 Rik Essenius
+﻿// Copyright 2016-2021 Rik Essenius
 //
 //   Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 //   except in compliance with the License. You may obtain a copy of the License at
@@ -59,40 +59,40 @@ namespace FixtureExplorer.Helpers
             <StateTransitionKey, StateTransitionValue>
             {
                 {
-                    new StateTransitionKey {NameState = NameState.Word, NameEvent = NameEvent.Letter},
-                    new StateTransitionValue {NextState = NameState.Word, Action = NameAction.AsIs}
+                    new StateTransitionKey { NameState = NameState.Word, NameEvent = NameEvent.Letter },
+                    new StateTransitionValue { NextState = NameState.Word, Action = NameAction.AsIs }
                 },
                 {
-                    new StateTransitionKey {NameState = NameState.Word, NameEvent = NameEvent.Digit},
-                    new StateTransitionValue {NextState = NameState.Number, Action = NameAction.AsIs}
+                    new StateTransitionKey { NameState = NameState.Word, NameEvent = NameEvent.Digit },
+                    new StateTransitionValue { NextState = NameState.Number, Action = NameAction.AsIs }
                 },
                 {
-                    new StateTransitionKey {NameState = NameState.Word, NameEvent = NameEvent.Other},
-                    new StateTransitionValue {NextState = NameState.OutOfWord, Action = NameAction.None}
+                    new StateTransitionKey { NameState = NameState.Word, NameEvent = NameEvent.Other },
+                    new StateTransitionValue { NextState = NameState.OutOfWord, Action = NameAction.None }
                 },
                 {
-                    new StateTransitionKey {NameState = NameState.Number, NameEvent = NameEvent.Letter},
-                    new StateTransitionValue {NextState = NameState.Word, Action = NameAction.Upper}
+                    new StateTransitionKey { NameState = NameState.Number, NameEvent = NameEvent.Letter },
+                    new StateTransitionValue { NextState = NameState.Word, Action = NameAction.Upper }
                 },
                 {
-                    new StateTransitionKey {NameState = NameState.Number, NameEvent = NameEvent.Digit},
-                    new StateTransitionValue {NextState = NameState.Number, Action = NameAction.AsIs}
+                    new StateTransitionKey { NameState = NameState.Number, NameEvent = NameEvent.Digit },
+                    new StateTransitionValue { NextState = NameState.Number, Action = NameAction.AsIs }
                 },
                 {
-                    new StateTransitionKey {NameState = NameState.Number, NameEvent = NameEvent.Other},
-                    new StateTransitionValue {NextState = NameState.OutOfWord, Action = NameAction.None}
+                    new StateTransitionKey { NameState = NameState.Number, NameEvent = NameEvent.Other },
+                    new StateTransitionValue { NextState = NameState.OutOfWord, Action = NameAction.None }
                 },
                 {
-                    new StateTransitionKey {NameState = NameState.OutOfWord, NameEvent = NameEvent.Letter},
-                    new StateTransitionValue {NextState = NameState.Word, Action = NameAction.Upper}
+                    new StateTransitionKey { NameState = NameState.OutOfWord, NameEvent = NameEvent.Letter },
+                    new StateTransitionValue { NextState = NameState.Word, Action = NameAction.Upper }
                 },
                 {
-                    new StateTransitionKey {NameState = NameState.OutOfWord, NameEvent = NameEvent.Digit},
-                    new StateTransitionValue {NextState = NameState.Number, Action = NameAction.AsIs}
+                    new StateTransitionKey { NameState = NameState.OutOfWord, NameEvent = NameEvent.Digit },
+                    new StateTransitionValue { NextState = NameState.Number, Action = NameAction.AsIs }
                 },
                 {
-                    new StateTransitionKey {NameState = NameState.OutOfWord, NameEvent = NameEvent.Other},
-                    new StateTransitionValue {NextState = NameState.OutOfWord, Action = NameAction.None}
+                    new StateTransitionKey { NameState = NameState.OutOfWord, NameEvent = NameEvent.Other },
+                    new StateTransitionValue { NextState = NameState.OutOfWord, Action = NameAction.None }
                 }
             };
 
@@ -119,17 +119,14 @@ namespace FixtureExplorer.Helpers
         public string NextChar(char c)
         {
             var nameEvent = NameEventFor(c);
-            var next = _dict[new StateTransitionKey {NameState = _state, NameEvent = nameEvent}];
+            var next = _dict[new StateTransitionKey { NameState = _state, NameEvent = nameEvent }];
             _state = next.NextState;
-            switch (next.Action)
+            return next.Action switch
             {
-                case NameAction.AsIs:
-                    return c.ToString(CultureInfo.InvariantCulture);
-                case NameAction.Upper:
-                    return c.ToString(CultureInfo.InvariantCulture).ToUpperInvariant();
-                default: // includes None
-                    return string.Empty;
-            }
+                NameAction.AsIs => c.ToString(CultureInfo.InvariantCulture),
+                NameAction.Upper => c.ToString(CultureInfo.InvariantCulture).ToUpperInvariant(),
+                _ => string.Empty
+            };
         }
     }
 }

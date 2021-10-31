@@ -1,4 +1,4 @@
-﻿// Copyright 2016-2020 Rik Essenius
+﻿// Copyright 2016-2021 Rik Essenius
 //
 //   Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 //   except in compliance with the License. You may obtain a copy of the License at
@@ -39,7 +39,8 @@ namespace FixtureExplorer.Helpers
             {
                 if (parameters.Length > 0)
                 {
-                    parameterList = "(" + string.Join(",", parameters.Select(p => TypeSpec(p.ParameterType, true))) + ")";
+                    parameterList = 
+                        "(" + string.Join(",", parameters.Select(p => TypeSpec(p.ParameterType, true))) + ")";
                 }
             }
             return keyPrefix + typeKey + "." + name + parameterList;
@@ -68,7 +69,8 @@ namespace FixtureExplorer.Helpers
                 }
                 // only thing left is Array now, as per the HasElementType definition
                 var rank = type.GetArrayRank();
-                var arrayDimension = "[" + (rank > 1 ? string.Join(",", Enumerable.Repeat("0:", rank)) : string.Empty) + "]";
+                var arrayDimension = "[" + (rank > 1 ? string.Join(",", Enumerable.Repeat("0:", rank)) : string.Empty) +
+                                     "]";
                 return elementTypeKey + arrayDimension;
             }
             var prefix = (type.IsNested ? TypeSpec(type.DeclaringType, isParam) : type.Namespace) + ".";

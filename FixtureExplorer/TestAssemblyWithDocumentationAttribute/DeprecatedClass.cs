@@ -14,19 +14,24 @@ using System.Diagnostics.CodeAnalysis;
 
 #pragma warning disable 1591 // We're missing XML comments on purpose
 
-namespace TestAssembly
+namespace TestAssemblyWithDocumentationAttribute
 {
+    /// <summary>A deprecated class</summary>
     [ExcludeFromCodeCoverage]
-    [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Intentional instance methods for testing")]
-    public class ClassNotSupportingDecisionTable
+    [Obsolete("Use Public Class instead")]
+    public class DeprecatedClass
     {
-        public string IntMethodWithParam(Tuple<int?, decimal?> param) => param.ToString();
+        private readonly string _parameter;
+
+        public DeprecatedClass() => _parameter = "none";
 
         /// <summary>
-        /// Writes the two params concatenated
+        ///     Documentation for constructor with one parameter
         /// </summary>
-        /// <param name="param1">param1 doc</param>
-        /// <param name="param2">param2 doc</param>
-        public void VoidMethodWithTwoParams(string param1, int? param2) => Console.WriteLine(param1 + param2);
+        /// <param name="parameter">documentation for the parameter</param>
+        [Documentation("Documentation attribute for constructor with 1 parameter")]
+        public DeprecatedClass(string[,] parameter) => _parameter = parameter[0, 0];
+
+        public string PublicMethodInObsoleteClass() => _parameter;
     }
 }

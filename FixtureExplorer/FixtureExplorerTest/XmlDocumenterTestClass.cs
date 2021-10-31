@@ -1,4 +1,4 @@
-﻿// Copyright 2016-2020 Rik Essenius
+﻿// Copyright 2016-2021 Rik Essenius
 //
 //   Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 //   except in compliance with the License. You may obtain a copy of the License at
@@ -40,7 +40,7 @@ namespace FixtureExplorerTest
         public int[][] ArrayProperty { get; set; }
 
         /// <summary>Echo(object)</summary>
-        /// <remarks>Not very interesting. See <seealso cref="Method1"/></remarks>
+        /// <remarks>Not very interesting. See <seealso cref="Method1" /></remarks>
         /// <requires>nothing</requires>
         /// <returns>itself</returns>
         /// <summary>forcing ignore of summary</summary>
@@ -48,7 +48,7 @@ namespace FixtureExplorerTest
 
         /// <returns>
         ///     the length of
-        ///     the string representation of Field1. See <see cref="Echo"/>
+        ///     the string representation of Field1. See <see cref="Echo" />
         /// </returns>
         public int Method1() => Field1.ToString().Length;
 

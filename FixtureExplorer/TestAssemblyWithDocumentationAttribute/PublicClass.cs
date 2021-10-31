@@ -1,4 +1,4 @@
-﻿// Copyright 2016-2021 Rik Essenius
+﻿// Copyright 2016-2020 Rik Essenius
 //
 //   Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 //   except in compliance with the License. You may obtain a copy of the License at
@@ -19,7 +19,7 @@ using System.Globalization;
 #pragma warning disable CA1041 // Provide ObsoleteAttribute message
 #pragma warning disable CA1822 // Mark members as static - intential instance, for testing
 
-namespace TestAssembly
+namespace TestAssemblyWithDocumentationAttribute
 {
     [ExcludeFromCodeCoverage]
     public class PublicClass
@@ -28,6 +28,7 @@ namespace TestAssembly
         ///     Just a demo public class constructor with one parameter
         /// </summary>
         /// <param name="input"></param>
+        [Documentation("Documentation attribute for public class constructor with one parameter")]
         public PublicClass(int input) => PrivateProperty = input;
 
         /// <summary>
@@ -35,6 +36,7 @@ namespace TestAssembly
         /// </summary>
         /// <param name="input1">input 1 doc</param>
         /// <param name="input2">input 2 doc</param>
+        [Documentation("Documentation attribute for public class constructor with two parameters")]
         public PublicClass(int input1, int? input2)
         {
             PrivateProperty = input1;
@@ -64,14 +66,10 @@ namespace TestAssembly
         internal void InternalMethod() => PrivateMethod();
         private void PrivateMethod() => PrivateProperty = 1;
         public void PublicMethodNoParams() => PublicGetProperty = false;
-
-        public object PublicMethodOneParam(long longParam) =>
-            string.IsNullOrEmpty(PublicSetProperty) ? longParam : PrivateProperty;
-
+        public object PublicMethodOneParam(long longParam) => string.IsNullOrEmpty(PublicSetProperty) ? longParam : PrivateProperty;
         public int PublicMethodParamArray(params int[] list) => list.Length;
 
-        public Dictionary<int, PublicClass>
-            PublicMethodReturningDictionary(KeyValuePair<int, PublicClass> keyValuePair) =>
+        public Dictionary<int, PublicClass> PublicMethodReturningDictionary(KeyValuePair<int, PublicClass> keyValuePair) =>
             new Dictionary<int, PublicClass> { { keyValuePair.Key, keyValuePair.Value } };
 
         public string PublicMethodTwoParams(double doubleParam, decimal decimalParam) =>

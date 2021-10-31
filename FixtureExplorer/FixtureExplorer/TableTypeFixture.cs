@@ -1,4 +1,4 @@
-﻿// Copyright 2016-2020 Rik Essenius
+﻿// Copyright 2016-2021 Rik Essenius
 //
 //   Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 //   except in compliance with the License. You may obtain a copy of the License at
@@ -49,7 +49,6 @@ namespace FixtureExplorer
         /// <param name="table">ignored, required for the interface</param>
         /// <remarks>uses the Template pattern, ListWithHeaderRow and AddToList are overriden in derived classes</remarks>
         [SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "FitSharp signature")]
-
         public List<object> DoTable(List<List<string>> table)
         {
             var returnList = ListWithHeaderRow;

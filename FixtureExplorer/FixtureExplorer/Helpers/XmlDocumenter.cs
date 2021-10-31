@@ -1,4 +1,4 @@
-﻿// Copyright 2016-2020 Rik Essenius
+﻿// Copyright 2016-2021 Rik Essenius
 //
 //   Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 //   except in compliance with the License. You may obtain a copy of the License at
@@ -58,12 +58,12 @@ namespace FixtureExplorer.Helpers
         public string ConstructorDocumentation(ConstructorInfo constructor)
         {
             var result = MethodBaseDocumentation(constructor);
-            if (string.IsNullOrEmpty(result)) return DocumentationFor(XmlDocumentKey.TypeKey(_type));
-            return result;
+            return string.IsNullOrEmpty(result) ? DocumentationFor(XmlDocumentKey.TypeKey(_type)) : result;
         }
 
         /// <remarks>IDocumenter interface implementation</remarks>
-        public string MethodBaseDocumentation(MethodBase methodBase) => DocumentationFor(XmlDocumentKey.MethodBaseKey(methodBase));
+        public string MethodBaseDocumentation(MethodBase methodBase) =>
+            DocumentationFor(XmlDocumentKey.MethodBaseKey(methodBase));
 
         /// <summary>
         ///     As XML documentation has multiple sections (summary, remarks, returns, etc.) we need to merge these. We start
@@ -73,16 +73,16 @@ namespace FixtureExplorer.Helpers
         {
             var result = new List<string>();
             if (docDict.ContainsKey("summary")) result.Add(TrimWhitespace(docDict["summary"]));
-            foreach (var docKey in docDict.Keys.Except(new[] {"summary"}))
-            {
-                result.Add(Capitalize(docKey) + ": " + TrimWhitespace(docDict[docKey]));
-            }
+            result.AddRange(docDict.Keys
+                .Except(new[] { "summary" })
+                .Select(docKey => Capitalize(docKey) + ": " + TrimWhitespace(docDict[docKey])));
 
             return string.Join(". ", result);
         }
 
         ///<requires>key must be at least one character</requires>
-        private static string Capitalize(string key) => key.Substring(0, 1).ToUpper(CultureInfo.InvariantCulture) + key.Substring(1);
+        private static string Capitalize(string key) =>
+            key.Substring(0, 1).ToUpper(CultureInfo.InvariantCulture) + key.Substring(1);
 
         /// <summary>
         ///     Get documentation from the loaded dictionary. Parses the XML section to extract the sections belonging to the element,
@@ -131,36 +131,14 @@ namespace FixtureExplorer.Helpers
             return AssembleResult(docDict);
         }
 
-        ///<summary>Get the inner text, but also include references from 'see' and 'seealso' elements</summary> 
-        ///<remarks>For references, gets the graceful name of the entry after the last dot before the first parenthesis (i.e. ignores class references and parameters)</remarks>
-        private static string TextContent(XmlNode entry)
-        {
-            var textResult = "";
-            foreach (XmlNode child in entry.ChildNodes)
-            {
-                if (child is XmlElement childElement && childElement.HasAttribute("cref"))
-                {
-                    var name = childElement.GetAttribute("cref").Split('(').First().Split('.').Last();
-                    textResult += new GracefulNamer(name).Regrace;
-                }
-                else
-                {
-                    textResult += child.InnerText;
-                }
-            }
-            return textResult;
-        }
-
         /// <summary>Parse an XML string into an XmlDocument.</summary>
         /// <remarks>Assumes that the XML string is valid</remarks>
         private static XmlDocument ParseXml(string input)
         {
-            var xmlDocument = new XmlDocument {XmlResolver = null};
+            var xmlDocument = new XmlDocument { XmlResolver = null };
             var stringReader = new StringReader(input);
-            using (var reader = XmlReader.Create(stringReader, new XmlReaderSettings {XmlResolver = null}))
-            {
-                xmlDocument.Load(reader);
-            }
+            using var reader = XmlReader.Create(stringReader, new XmlReaderSettings { XmlResolver = null });
+            xmlDocument.Load(reader);
             return xmlDocument;
         }
 
@@ -183,6 +161,29 @@ namespace FixtureExplorer.Helpers
                 if (memberName == null) continue;
                 Documentation[memberName] = "<root>" + xmlReader.ReadInnerXml().Trim() + "</root>";
             }
+        }
+
+        /// <summary>Get the inner text, but also include references from 'see' and 'seealso' elements</summary>
+        /// <remarks>
+        ///     For references, gets the graceful name of the entry after the last dot before the first parenthesis (i.e. ignores class
+        ///     references and parameters)
+        /// </remarks>
+        private static string TextContent(XmlNode entry)
+        {
+            var textResult = "";
+            foreach (XmlNode child in entry.ChildNodes)
+            {
+                if (child is XmlElement childElement && childElement.HasAttribute("cref"))
+                {
+                    var name = childElement.GetAttribute("cref").Split('(').First().Split('.').Last();
+                    textResult += new GracefulNamer(name).Regrace;
+                }
+                else
+                {
+                    textResult += child.InnerText;
+                }
+            }
+            return textResult;
         }
 
         /// <summary>

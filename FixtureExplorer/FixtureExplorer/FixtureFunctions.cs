@@ -1,4 +1,4 @@
-﻿// Copyright 2016-2020 Rik Essenius
+﻿// Copyright 2016-2021 Rik Essenius
 //
 //   Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 //   except in compliance with the License. You may obtain a copy of the License at
@@ -47,7 +47,8 @@ namespace FixtureExplorer
         /// <remarks>Part of the Template pattern for DoTable</remarks>
         protected override void AddToList(List<object> result, Type type)
         {
-            foreach (var methodInfo in MethodBaseDocumenter.RelevantMethods(type).OrderBy(method => RealName(method.Name)))
+            foreach (var methodInfo in MethodBaseDocumenter.RelevantMethods(type)
+                .OrderBy(method => RealName(method.Name)))
             {
                 var methodHelper = new FixtureDocumenter(methodInfo);
                 var deprecationMessage = methodHelper.DeprecationMessage;
@@ -66,7 +67,8 @@ namespace FixtureExplorer
         private static string RealName(string reflectedName) => new GracefulNamer(reflectedName).RealName;
 
         /// <summary>A row with a function specification</summary>
-        private static List<string> Row(Type type, IEnumerable<string> scope, MethodInfo methodInfo, FixtureDocumenter method, string documentation)
+        private static List<string> Row(Type type, IEnumerable<string> scope, MethodInfo methodInfo,
+            FixtureDocumenter method, string documentation)
         {
             var namer = new GracefulNamer(methodInfo.Name);
             return new List<string>

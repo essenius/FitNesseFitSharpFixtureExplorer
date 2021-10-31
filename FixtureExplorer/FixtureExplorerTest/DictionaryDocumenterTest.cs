@@ -1,4 +1,4 @@
-﻿// Copyright 2016-2020 Rik Essenius
+﻿// Copyright 2016-2021 Rik Essenius
 //
 //   Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 //   except in compliance with the License. You may obtain a copy of the License at
@@ -29,7 +29,10 @@ namespace FixtureExplorerTest
             Assert.AreEqual("Test Method 2", documenter.MethodBaseDocumentation(doctest.GetMethod("TestMethod2")));
             Assert.AreEqual("Property 1", documenter.MethodBaseDocumentation(doctest.GetMethod("get_Property1")));
             Assert.AreEqual("Property 1", documenter.MethodBaseDocumentation(doctest.GetMethod("set_Property1")));
-            Assert.AreEqual("Constructor 1", documenter.MethodBaseDocumentation(doctest.GetConstructor(new[] {typeof(int)})));
+            Assert.AreEqual(
+                "Constructor 1",
+                documenter.MethodBaseDocumentation(doctest.GetConstructor(new[] { typeof(int) }))
+                );
 
             Assert.AreEqual(string.Empty, documenter.MethodBaseDocumentation(doctest.GetMethod("get_NoDocProperty")));
         }

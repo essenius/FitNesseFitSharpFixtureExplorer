@@ -1,4 +1,4 @@
-﻿// Copyright 2016-2020 Rik Essenius
+﻿// Copyright 2016-2021 Rik Essenius
 //
 //   Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 //   except in compliance with the License. You may obtain a copy of the License at
@@ -14,7 +14,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using TestAssembly;
+using TestAssemblyWithDocumentationAttribute;
 
 #pragma warning disable 1591 // We're missing XML comments on purpose
 
@@ -29,12 +29,12 @@ namespace FixtureExplorerTest
             var expected = new List<string>
             {
                 "|report:Namespace|report:Class|report:Parameters|report:Supports Table Type|report:Documentation|",
-                "|report:Test Assembly|report:Class Not Supporting Decision Table|report:|report:Script|report:|",
-                "|report:Test Assembly|report:Deprecated Class|report:|report:Decision, Script|report:[Deprecated class: Use Public Class instead]A deprecated class|",
-                "|report:Test Assembly|report:Deprecated Class|report:parameter: String[,]|report:Decision, Script|report:[Deprecated class: Use Public Class instead]Documentation for constructor with one parameter. Params: { parameter: documentation for the parameter }. Documentation attribute for constructor with 1 parameter|",
-                "|report:Test Assembly|report:Public Class|report:input: Int32|report:Decision, Query, Script|report:Just a demo public class constructor with one parameter. Documentation attribute for public class constructor with one parameter|",
-                "|report:Test Assembly|report:Public Class|report:input1: Int32, input2: Nullable<Int32>|report:Decision, Query, Script|report:Just a demo public class constructor with two parameters. Params: { input1: input 1 doc; input2: input 2 doc }. Documentation attribute for public class constructor with two parameters|",
-                "|report:Test Assembly|report:Wrong Table Class|report:|report:Decision, Script|report:WrongTableClass is a fixture with a wrong Table or Query Signature, so should not be recognized as table. Class with a wrong Table/Query signature, so only supports Script and Decision|"
+                "|report:Test Assembly With Documentation Attribute|report:Class Not Supporting Decision Table|report:|report:Script|report:|",
+                "|report:Test Assembly With Documentation Attribute|report:Deprecated Class|report:|report:Decision, Script|report:[Deprecated class: Use Public Class instead]A deprecated class|",
+                "|report:Test Assembly With Documentation Attribute|report:Deprecated Class|report:parameter: String[,]|report:Decision, Script|report:[Deprecated class: Use Public Class instead]Documentation for constructor with one parameter. Params: { parameter: documentation for the parameter }. Documentation attribute for constructor with 1 parameter|",
+                "|report:Test Assembly With Documentation Attribute|report:Public Class|report:input: Int32|report:Decision, Query, Script|report:Just a demo public class constructor with one parameter. Documentation attribute for public class constructor with one parameter|",
+                "|report:Test Assembly With Documentation Attribute|report:Public Class|report:input1: Int32, input2: Nullable<Int32>|report:Decision, Query, Script|report:Just a demo public class constructor with two parameters. Params: { input1: input 1 doc; input2: input 2 doc }. Documentation attribute for public class constructor with two parameters|",
+                "|report:Test Assembly With Documentation Attribute|report:Wrong Table Class|report:|report:Decision, Script|report:WrongTableClass is a fixture with a wrong Table or Query Signature, so should not be recognized as table. Class with a wrong Table/Query signature, so only supports Script and Decision|"
             };
             var publicClass = new PublicClass(5);
             var location = Assembly.GetAssembly(typeof(PublicClass)).Location;

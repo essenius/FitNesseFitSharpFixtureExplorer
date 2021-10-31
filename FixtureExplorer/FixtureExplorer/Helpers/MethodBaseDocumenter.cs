@@ -1,4 +1,4 @@
-﻿// Copyright 2016-2020 Rik Essenius
+﻿// Copyright 2016-2021 Rik Essenius
 //
 //   Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 //   except in compliance with the License. You may obtain a copy of the License at
@@ -26,7 +26,8 @@ namespace FixtureExplorer.Helpers
         ///     All public or internal, static or non-static methods. Includes properties (those are just methods under the hood).
         ///     Although FitSharp can see protected and private methods, convention is not to deliberately expose them.
         /// </remarks>
-        private const BindingFlags RelevantBindings = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.Instance;
+        private const BindingFlags RelevantBindings =
+            BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.Instance;
 
         /// <summary>AttributeDocumenter is a special case because of the Obsolete attributes</summary>
         private readonly AttributeDocumenter _attributeDocumenter;
@@ -42,13 +43,14 @@ namespace FixtureExplorer.Helpers
             _methodBase = methodBase;
             var parentType = methodBase.DeclaringType;
             _attributeDocumenter = new AttributeDocumenter(parentType, RelevantBindings);
-            _documenters = new List<IDocumenter> {new XmlDocumenter(parentType), _attributeDocumenter, new DictionaryDocumenter(parentType)};
+            _documenters = new List<IDocumenter>
+                { new XmlDocumenter(parentType), _attributeDocumenter, new DictionaryDocumenter(parentType) };
         }
 
         /// <returns>The concatenation of type documentation retrieved via the different mechanisms.</returns>
         /// <remarks>here is where we use the Strategy pattern to hide the actual mechanism</remarks>
         public string ConstructorDocumentation =>
-            ConcatenateDocumentation(x => x.ConstructorDocumentation((ConstructorInfo) _methodBase));
+            ConcatenateDocumentation(x => x.ConstructorDocumentation((ConstructorInfo)_methodBase));
 
         /// <returns>The corresponding message if the method or the class is declared obsolete, an empty string otherwise.</returns>
         /// <remarks>This only uses the AttributeDocumenter as we have no choice here</remarks>
@@ -82,7 +84,8 @@ namespace FixtureExplorer.Helpers
         };
 
         /// <summary>Returns a list parameters of the method, with gracefully named type</summary>
-        public List<string> Parameters => _methodBase.GetParameters()
+        public List<string> Parameters => _methodBase
+            .GetParameters()
             .Select(parameter => $"{parameter.Name}: {GracefulNamer.GracefulName(parameter.ParameterType)}")
             .ToList();
 
@@ -92,7 +95,7 @@ namespace FixtureExplorer.Helpers
         {
             get
             {
-                var scope = new List<string> {_methodBase.IsPublic ? "public" : "internal"};
+                var scope = new List<string> { _methodBase.IsPublic ? "public" : "internal" };
                 if (_methodBase.IsStatic)
                 {
                     scope.Add("static");
@@ -120,6 +123,8 @@ namespace FixtureExplorer.Helpers
 
         /// <summary>Relevant methods are not protected or private, and are not methods we want to ignore.</summary>
         public static IEnumerable<MethodInfo> RelevantMethods(Type type) =>
-            type.GetMethods(RelevantBindings).Where(x => !x.IsFamily && !x.IsPrivate && !MethodsToSkip.Contains(x.Name));
+            type
+                .GetMethods(RelevantBindings)
+                .Where(x => !x.IsFamily && !x.IsPrivate && !MethodsToSkip.Contains(x.Name));
     }
 }

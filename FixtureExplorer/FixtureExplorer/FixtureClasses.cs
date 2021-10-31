@@ -1,4 +1,4 @@
-﻿// Copyright 2016-2020 Rik Essenius
+﻿// Copyright 2016-2021 Rik Essenius
 //
 //   Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 //   except in compliance with the License. You may obtain a copy of the License at
@@ -68,15 +68,14 @@ namespace FixtureExplorer
             };
 
         /// <param name="type">the fixture type to inspect</param>
-        /// <returns>a list of FitNesse tables that the type support</returns>
+        /// <returns>a list of FitNesse tables that the type supports</returns>
         internal static IList<string> SupportedTables(Type type)
         {
             var tables = new List<string>();
-            foreach (var methodInfo in MethodBaseDocumenter.RelevantMethods(type))
-            {
-                var method = new FixtureDocumenter(methodInfo);
-                tables = tables.Union(method.TablesSupported).ToList();
-            }
+            tables = MethodBaseDocumenter.RelevantMethods(type)
+                .Select(methodInfo => new FixtureDocumenter(methodInfo))
+                .Aggregate(tables, (current, method) => current.Union(method.TablesSupported).ToList());
+
             // no sense reporting the presence of optional methods here. if the mandatory ones are there, we report it, and if not we don't.
             tables.Remove("Decision-Optional");
             tables.Remove("Query-Optional");

@@ -1,4 +1,4 @@
-﻿// Copyright 2016-2020 Rik Essenius
+﻿// Copyright 2016-2021 Rik Essenius
 //
 //   Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 //   except in compliance with the License. You may obtain a copy of the License at
@@ -11,7 +11,6 @@
 
 using System;
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 
@@ -59,7 +58,8 @@ namespace FixtureExplorer.Helpers
                 foreach (var currentChar in RealName)
                 {
                     // Look for a word separator
-                    if (char.IsUpper(currentChar) ||
+                    if (
+                        char.IsUpper(currentChar) ||
                         char.IsDigit(currentChar) && !isGrabbingDigits ||
                         currentChar == separator)
                     {
@@ -79,11 +79,12 @@ namespace FixtureExplorer.Helpers
         public string Type => IsGetProperty ? "Property (Get)" : IsSetProperty ? "Property (Set)" : "Method";
 
 
-        /// <returns>the graceful name of a type</returns> 
+        /// <returns>the graceful name of a type</returns>
         public static string GracefulName(Type type)
         {
             Debug.Assert(type.Namespace != null, "type.Namespace != null");
-            if (type.IsPrimitive ||
+            if (
+                type.IsPrimitive ||
                 type.Namespace.Equals("System", StringComparison.InvariantCulture) && !type.IsGenericType)
             {
                 // This is a built-in type, so simply return that

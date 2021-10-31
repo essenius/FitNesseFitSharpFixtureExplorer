@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TestAssemblyWithDocumentationAttribute</name>
+    </assembly>
+    <members>
+        <member name="M:TestAssemblyWithDocumentationAttribute.ClassNotSupportingDecisionTable.VoidMethodWithTwoParams(System.String,System.Nullable{System.Int32})">
+            <summary>
+            Writes the two params concatenated
+            </summary>
+            <param name="param1">param1 doc</param>
+            <param name="param2">param2 doc</param>
+        </member>
+        <member name="T:TestAssemblyWithDocumentationAttribute.DeprecatedClass">
+            <summary>A deprecated class</summary>
+        </member>
+        <member name="M:TestAssemblyWithDocumentationAttribute.DeprecatedClass.#ctor(System.String[0:,0:])">
+            <summary>
+                Documentation for constructor with one parameter
+            </summary>
+            <param name="parameter">documentation for the parameter</param>
+        </member>
+        <member name="M:TestAssemblyWithDocumentationAttribute.PublicClass.#ctor(System.Int32)">
+            <summary>
+                Just a demo public class constructor with one parameter
+            </summary>
+            <param name="input"></param>
+        </member>
+        <member name="M:TestAssemblyWithDocumentationAttribute.PublicClass.#ctor(System.Int32,System.Nullable{System.Int32})">
+            <summary>
+                Just a demo public class constructor with two parameters
+            </summary>
+            <param name="input1">input 1 doc</param>
+            <param name="input2">input 2 doc</param>
+        </member>
+        <member name="P:TestAssemblyWithDocumentationAttribute.PublicClass.PublicStaticProperty">
+            <summary>
+                Dummy Public Static Property doing absolutely nothing
+            </summary>
+        </member>
+        <member name="M:TestAssemblyWithDocumentationAttribute.PublicClass.Table(System.Collections.Generic.List{System.Collections.Generic.List{System.String}})">
+            <returns> the element count of the input parameter</returns>
+        </member>
+        <member name="T:TestAssemblyWithDocumentationAttribute.WrongTableClass">
+            <summary>
+                WrongTableClass is a fixture with a wrong Table or Query Signature, so should not be recognized as table
+            </summary>
+        </member>
+    </members>
+</doc>

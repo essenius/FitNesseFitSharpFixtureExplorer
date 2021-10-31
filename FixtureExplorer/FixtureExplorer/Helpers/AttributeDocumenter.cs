@@ -1,4 +1,4 @@
-﻿// Copyright 2016-2020 Rik Essenius
+﻿// Copyright 2016-2021 Rik Essenius
 //
 //   Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 //   except in compliance with the License. You may obtain a copy of the License at
@@ -48,7 +48,7 @@ namespace FixtureExplorer.Helpers
         {
             var attribs = memberInfo.GetCustomAttributes(typeof(T), false);
             if (attribs.Length == 0) return default;
-            return (T) attribs[0];
+            return (T)attribs[0];
         }
 
         /// <summary>
@@ -65,7 +65,8 @@ namespace FixtureExplorer.Helpers
             var parent = methodBase.DeclaringType;
             Debug.Assert(parent != null, nameof(parent) + " != null");
             return namer.IsProperty
-                ? parent.GetMembers(_requiredBindings).FirstOrDefault(m => m.MemberType == MemberTypes.Property && m.Name == namer.RealName)
+                ? parent.GetMembers(_requiredBindings)
+                    .FirstOrDefault(m => m.MemberType == MemberTypes.Property && m.Name == namer.RealName)
                 : methodBase;
         }
 
@@ -83,13 +84,16 @@ namespace FixtureExplorer.Helpers
         private static string DocumentationFor(MemberInfo memberInfo)
         {
             // We need reflection here because the namespace of the DocumentationAttribute class may differ per assembly
-            var documentationAttribute = memberInfo.GetCustomAttributes(false)
+            var documentationAttribute = memberInfo
+                .GetCustomAttributes(false)
                 .FirstOrDefault(obj => obj.GetType().Name.Equals(DocumentationAttribute, StringComparison.Ordinal));
-            var documentation = documentationAttribute?.GetType().GetProperty("Message")?.GetValue(documentationAttribute)?.ToString();
+            var documentation = documentationAttribute?.GetType().GetProperty("Message")
+                ?.GetValue(documentationAttribute)?.ToString();
             return documentation;
         }
 
         /// <returns>The Deprecation Message of the methodBase</returns>
-        public string MethodBaseDeprecationMessage(MethodBase methodBase) => DeprecationMessage(AttributeBase(methodBase));
+        public string MethodBaseDeprecationMessage(MethodBase methodBase) =>
+            DeprecationMessage(AttributeBase(methodBase));
     }
 }

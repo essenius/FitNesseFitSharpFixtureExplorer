@@ -7,10 +7,16 @@
     <AnalysysMode>AllEnabledByDefault</AnalysysMode>
     <Version>3.1.0</Version>
     <Authors>Rik Essenius</Authors>
-    <Description>Test Assembly used by FixtureExporer tests</Description>
+    <Description>Test Assembly with Documentation Attributes, used by FixtureExporer tests</Description>
     <Copyright>Copyright © Rik Essenius 2017-2021</Copyright>
     <RepositoryUrl>https://github.com/essenius/FixtureExplorer</RepositoryUrl>
-    <DocumentationFile>TestAssembly.xml</DocumentationFile>
+    <DocumentationFile>TestAssemblyWithDocumentationAttribute.xml</DocumentationFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Update="TestAssemblyWithDocumentationAttribute.xml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 
 </Project>

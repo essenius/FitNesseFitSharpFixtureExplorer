@@ -1,4 +1,4 @@
-﻿// Copyright 2016-2020 Rik Essenius
+﻿// Copyright 2016-2021 Rik Essenius
 //
 //   Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 //   except in compliance with the License. You may obtain a copy of the License at
@@ -68,7 +68,9 @@ namespace FixtureExplorer.Helpers
         }
 
         // A void signature has no return type and no parameters
-        private bool HasVoidSignature => _methodInfo.ReturnType == typeof(void) && _methodInfo.GetParameters().Length == 0;
+        private bool HasVoidSignature =>
+            _methodInfo.ReturnType == typeof(void) && _methodInfo.GetParameters().Length == 0;
+
         private bool SupportsDecisionTable => HasPropertySignature;
 
         /// <remarks>
@@ -94,7 +96,7 @@ namespace FixtureExplorer.Helpers
         {
             get
             {
-                var supportList = new List<string> {"Script"};
+                var supportList = new List<string> { "Script" };
                 if (SupportsDecisionTable) supportList.Add("Decision");
                 if (SupportsDecisionTableOptional) supportList.Add("Decision-Optional");
                 if (SupportsQueryTable) supportList.Add("Query");

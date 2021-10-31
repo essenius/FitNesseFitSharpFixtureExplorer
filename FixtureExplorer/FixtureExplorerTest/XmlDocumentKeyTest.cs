@@ -1,4 +1,4 @@
-﻿// Copyright 2016-2020 Rik Essenius
+﻿// Copyright 2016-2021 Rik Essenius
 //
 //   Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 //   except in compliance with the License. You may obtain a copy of the License at
@@ -19,7 +19,6 @@ namespace FixtureExplorerTest
 {
     [TestClass]
     [DeploymentItem("FixtureExplorerTest.xml")]
-
     public class XmlDocumentKeyTest
     {
         [TestMethod]
@@ -27,7 +26,10 @@ namespace FixtureExplorerTest
         {
             var testClass = typeof(XmlDocumenterTestClass.NestedClass);
             var voidConstructor = testClass.GetConstructor(Array.Empty<Type>());
-            Assert.AreEqual("M:FixtureExplorerTest.XmlDocumenterTestClass.NestedClass.#ctor", XmlDocumentKey.MethodBaseKey(voidConstructor));
+            Assert.AreEqual(
+                "M:FixtureExplorerTest.XmlDocumenterTestClass.NestedClass.#ctor",
+                XmlDocumentKey.MethodBaseKey(voidConstructor)
+                );
         }
 
         [TestMethod]
@@ -41,8 +43,10 @@ namespace FixtureExplorerTest
         {
             var c = typeof(XmlDocumenterTestClassUnsafe);
             var methodWithPointerParam = c.GetMethod("UnsafeMethod");
-            Assert.AreEqual("M:FixtureExplorerTest.XmlDocumenterTestClassUnsafe.UnsafeMethod(System.Int32*)",
-                XmlDocumentKey.MethodBaseKey(methodWithPointerParam));
+            Assert.AreEqual(
+                "M:FixtureExplorerTest.XmlDocumenterTestClassUnsafe.UnsafeMethod(System.Int32*)",
+                XmlDocumentKey.MethodBaseKey(methodWithPointerParam)
+                );
         }
 
         [TestMethod]
@@ -50,11 +54,14 @@ namespace FixtureExplorerTest
         {
             var c = typeof(XmlDocumenterTestClass);
             var setArrayProperty = c.GetMethod("set_ArrayProperty");
-            Assert.AreEqual("P:FixtureExplorerTest.XmlDocumenterTestClass.ArrayProperty",
+            Assert.AreEqual(
+                "P:FixtureExplorerTest.XmlDocumenterTestClass.ArrayProperty",
                 XmlDocumentKey.MethodBaseKey(setArrayProperty));
             var getArrayProperty = c.GetMethod("get_ArrayProperty");
-            Assert.AreEqual("P:FixtureExplorerTest.XmlDocumenterTestClass.ArrayProperty",
-                XmlDocumentKey.MethodBaseKey(getArrayProperty));
+            Assert.AreEqual(
+                "P:FixtureExplorerTest.XmlDocumenterTestClass.ArrayProperty",
+                XmlDocumentKey.MethodBaseKey(getArrayProperty)
+                );
         }
 
         [TestMethod]
@@ -62,19 +69,29 @@ namespace FixtureExplorerTest
         {
             var c = typeof(XmlDocumenterTestClass);
             var voidConstructor = c.GetConstructor(Array.Empty<Type>());
-            Assert.AreEqual("M:FixtureExplorerTest.XmlDocumenterTestClass.#ctor", XmlDocumentKey.MethodBaseKey(voidConstructor));
-            var nullableDoubleConstructor = c.GetConstructor(new[] {typeof(double?)});
-            Assert.AreEqual("M:FixtureExplorerTest.XmlDocumenterTestClass.#ctor(System.Nullable{System.Double})",
-                XmlDocumentKey.MethodBaseKey(nullableDoubleConstructor));
+            Assert.AreEqual(
+                "M:FixtureExplorerTest.XmlDocumenterTestClass.#ctor",
+                XmlDocumentKey.MethodBaseKey(voidConstructor)
+                );
+            var nullableDoubleConstructor = c.GetConstructor(new[] { typeof(double?) });
+            Assert.AreEqual(
+                "M:FixtureExplorerTest.XmlDocumenterTestClass.#ctor(System.Nullable{System.Double})",
+                XmlDocumentKey.MethodBaseKey(nullableDoubleConstructor)
+                );
             var echoMethod = c.GetMethod("Echo");
-            Assert.AreEqual("M:FixtureExplorerTest.XmlDocumenterTestClass.Echo(System.Object@)",
-                XmlDocumentKey.MethodBaseKey(echoMethod));
+            Assert.AreEqual(
+                "M:FixtureExplorerTest.XmlDocumenterTestClass.Echo(System.Object@)",
+                XmlDocumentKey.MethodBaseKey(echoMethod)
+                );
         }
 
         [TestMethod]
         public void XmlDocumentKeyTypeKeyTest()
         {
-            Assert.AreEqual("T:FixtureExplorerTest.XmlDocumenterTestClass", XmlDocumentKey.TypeKey(typeof(XmlDocumenterTestClass)));
+            Assert.AreEqual(
+                "T:FixtureExplorerTest.XmlDocumenterTestClass",
+                XmlDocumentKey.TypeKey(typeof(XmlDocumenterTestClass))
+                );
         }
 
         [TestMethod]
@@ -82,10 +99,12 @@ namespace FixtureExplorerTest
         {
             Assert.AreEqual("System.String", XmlDocumentKey.TypeSpec(typeof(string), true));
             Assert.AreEqual("System.Nullable{System.Int32}", XmlDocumentKey.TypeSpec(typeof(int?), true));
-            // strange one. The documentation key reverses the dimensions, but that's per the specs.
+            // strange one. The key reverses the dimensions, but that's per the specs.
             Assert.AreEqual("System.Int32[][0:,0:]", XmlDocumentKey.TypeSpec(typeof(int[,][]), true));
-            Assert.AreEqual("FixtureExplorerTest.XmlDocumenterTestClass.NestedClass",
-                XmlDocumentKey.TypeSpec(typeof(XmlDocumenterTestClass.NestedClass), false));
+            Assert.AreEqual(
+                "FixtureExplorerTest.XmlDocumenterTestClass.NestedClass",
+                XmlDocumentKey.TypeSpec(typeof(XmlDocumenterTestClass.NestedClass), false)
+                );
         }
     }
 }
