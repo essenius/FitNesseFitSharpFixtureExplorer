@@ -15,6 +15,8 @@ using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Xml;
+using FixtureExplorer.Helpers;
 
 namespace FixtureExplorer
 {
@@ -60,12 +62,13 @@ namespace FixtureExplorer
             return returnList;
         }
 
-        /// <summary>Memory function delivering the assemmbly to work with</summary>
+        /// <summary>Memory function delivering the assembly to work with</summary>
         private Assembly FixtureAssembly()
         {
             if (_assembly == null)
             {
-                _assembly = Assembly.LoadFrom(Path.GetFullPath(_assemblyName));
+                var locator = new AssemblyLocator(_assemblyName, ".");
+                _assembly = Assembly.LoadFrom(Path.GetFullPath(locator.FindAssemblyPath()));
             }
             return _assembly;
         }

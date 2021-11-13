@@ -6,7 +6,7 @@
     <LangVersion>8.0</LangVersion>
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
     <AnalysysMode>AllEnabledByDefault</AnalysysMode>
-    <Version>3.1.0</Version>
+    <Version>3.2.0</Version>
     <Authors>Rik Essenius</Authors>
     <Description>Unit tests for FitNesse/FitSharp fixture to explore available functions in fixture assemblies</Description>
     <Copyright>Copyright © Rik Essenius 2015-2021</Copyright>
@@ -25,5 +25,14 @@
   <ItemGroup>
     <ProjectReference Include="..\FixtureExplorer\FixtureExplorer.csproj" />
     <ProjectReference Include="..\TestAssemblyWithDocumentationAttribute\TestAssemblyWithDocumentationAttribute.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Bogus.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestConfig.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 </Project>

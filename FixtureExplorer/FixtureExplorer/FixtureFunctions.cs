@@ -47,7 +47,8 @@ namespace FixtureExplorer
         /// <remarks>Part of the Template pattern for DoTable</remarks>
         protected override void AddToList(List<object> result, Type type)
         {
-            foreach (var methodInfo in MethodBaseDocumenter.RelevantMethods(type)
+            foreach (var methodInfo in MethodBaseDocumenter
+            	.RelevantMethods(type)
                 .OrderBy(method => RealName(method.Name)))
             {
                 var methodHelper = new FixtureDocumenter(methodInfo);
