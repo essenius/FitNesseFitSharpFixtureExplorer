@@ -20,6 +20,7 @@ namespace FixtureExplorerTest
     public class AssemblyLocatorTest
     {
         [TestMethod]
+        [DeploymentItem("config.xml")]
         public void TestAssemblyFoundInCurrentFolder()
         {
             var locator = new AssemblyLocator("FixtureExplorer.dll", ".");
@@ -27,7 +28,7 @@ namespace FixtureExplorerTest
         }
 
         [TestMethod]
-        [DeploymentItem("bogus.xml")] // only needed for .NET Framework
+        [DeploymentItem("bogus.xml")] 
         public void TestAssemblyNotFound()
         {
             var locator = new AssemblyLocator("bogus.dll", ".");
@@ -35,7 +36,7 @@ namespace FixtureExplorerTest
         }
 
         [TestMethod]
-        [DeploymentItem("TestConfig.xml")] // only needed for .NET Framework
+        [DeploymentItem("TestConfig.xml")] 
         public void TestAssemblySearchXml()
         {
             var locator = new AssemblyLocator("MyTest2.dll", ".");

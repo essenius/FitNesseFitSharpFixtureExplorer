@@ -1,14 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net5.0;net48</TargetFrameworks>
+    <TargetFrameworks>net6.0;net48</TargetFrameworks>
     <LangVersion>8.0</LangVersion>
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
     <AnalysysMode>AllEnabledByDefault</AnalysysMode>
-    <Version>3.1.0</Version>
+    <Version>3.3.0</Version>
     <Authors>Rik Essenius</Authors>
     <Description>Test Assembly with Documentation Attributes, used by FixtureExporer tests</Description>
-    <Copyright>Copyright © Rik Essenius 2017-2021</Copyright>
+    <Copyright>Copyright © Rik Essenius 2017-2023</Copyright>
     <RepositoryUrl>https://github.com/essenius/FixtureExplorer</RepositoryUrl>
     <DocumentationFile>TestAssemblyWithDocumentationAttribute.xml</DocumentationFile>
   </PropertyGroup>
