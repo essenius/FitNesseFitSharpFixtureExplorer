@@ -13,7 +13,7 @@ Differences are:
 * If you don't have .NET 6 SDK installed: download FixtureExplorer.zip from the latest [release](../../releases) and extract into `FixtureExplorer\FixtureExplorer`
 * Go to the assembly folder folder: `cd FixtureExplorer\bin\Release\net6.0`
 * Start FitNesse
-* Run the suite: Open a browser and enter the URL http://localhost:8080/FitSharpDemos.FixtureExplorTest?test
+* Run the suite: Open a browser and enter the URL http://localhost:8080/FitSharpDemos.FixtureExplorerTest?test
 
 # Tutorial and Reference
 See the [Wiki](../../wiki)
