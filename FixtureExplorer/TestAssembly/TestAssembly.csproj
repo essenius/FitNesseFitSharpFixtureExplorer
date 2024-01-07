@@ -5,10 +5,10 @@
     <LangVersion>8.0</LangVersion>
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
     <AnalysysMode>AllEnabledByDefault</AnalysysMode>
-    <Version>3.3.0</Version>
+    <Version>3.3.1</Version>
     <Authors>Rik Essenius</Authors>
     <Description>Test Assembly used by FixtureExporer tests</Description>
-    <Copyright>Copyright © Rik Essenius 2017-2023</Copyright>
+    <Copyright>Copyright © Rik Essenius 2017-2024</Copyright>
     <RepositoryUrl>https://github.com/essenius/FixtureExplorer</RepositoryUrl>
     <DocumentationFile>TestAssembly.xml</DocumentationFile>
   </PropertyGroup>

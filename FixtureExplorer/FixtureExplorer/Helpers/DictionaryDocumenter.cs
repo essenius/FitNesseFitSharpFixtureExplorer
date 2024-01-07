@@ -1,4 +1,4 @@
-﻿// Copyright 2016-2021 Rik Essenius
+﻿// Copyright 2016-2024 Rik Essenius
 //
 //   Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 //   except in compliance with the License. You may obtain a copy of the License at
@@ -18,7 +18,7 @@ namespace FixtureExplorer.Helpers
     /// <summary>
     ///     This is the classical way of documenting a fixture: via a public static Dictionary&lt;string, string&gt;
     ///     FixtureDocumentation property. It was replaced by the XMLDocumenter mechanism, but for backward compatibility with
-    ///     older fixtures it is still suppported.
+    ///     older fixtures it is still supported.
     /// </summary>
     internal class DictionaryDocumenter : IDocumenter
     {
@@ -56,8 +56,8 @@ namespace FixtureExplorer.Helpers
         {
             if (_documentation.ContainsKey(key)) return _documentation[key];
             var keyWithoutParamCount = key.Split('`')[0];
-            var nameToSeach = new GracefulNamer(keyWithoutParamCount).RealName;
-            return _documentation.ContainsKey(nameToSeach) ? _documentation[nameToSeach] : string.Empty;
+            var nameToSearch = new GracefulNamer(keyWithoutParamCount).RealName;
+            return _documentation.ContainsKey(nameToSearch) ? _documentation[nameToSearch] : string.Empty;
         }
     }
 }

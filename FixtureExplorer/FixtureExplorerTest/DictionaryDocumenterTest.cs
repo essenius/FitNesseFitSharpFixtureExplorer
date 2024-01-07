@@ -1,4 +1,4 @@
-﻿// Copyright 2016-2021 Rik Essenius
+﻿// Copyright 2016-2024 Rik Essenius
 //
 //   Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 //   except in compliance with the License. You may obtain a copy of the License at
@@ -22,19 +22,19 @@ namespace FixtureExplorerTest
         [TestMethod]
         public void DictionaryDocumenterTest1()
         {
-            var doctest = typeof(DictionaryDocumenterTestClass);
-            var documenter = new DictionaryDocumenter(doctest);
-            Assert.AreEqual("Class documentation", documenter.ConstructorDocumentation(doctest.GetConstructors()[0]));
-            Assert.AreEqual("Test Method 1", documenter.MethodBaseDocumentation(doctest.GetMethod("TestMethod1")));
-            Assert.AreEqual("Test Method 2", documenter.MethodBaseDocumentation(doctest.GetMethod("TestMethod2")));
-            Assert.AreEqual("Property 1", documenter.MethodBaseDocumentation(doctest.GetMethod("get_Property1")));
-            Assert.AreEqual("Property 1", documenter.MethodBaseDocumentation(doctest.GetMethod("set_Property1")));
+            var docTest = typeof(DictionaryDocumenterTestClass);
+            var documenter = new DictionaryDocumenter(docTest);
+            Assert.AreEqual("Class documentation", documenter.ConstructorDocumentation(docTest.GetConstructors()[0]));
+            Assert.AreEqual("Test Method 1", documenter.MethodBaseDocumentation(docTest.GetMethod("TestMethod1")));
+            Assert.AreEqual("Test Method 2", documenter.MethodBaseDocumentation(docTest.GetMethod("TestMethod2")));
+            Assert.AreEqual("Property 1", documenter.MethodBaseDocumentation(docTest.GetMethod("get_Property1")));
+            Assert.AreEqual("Property 1", documenter.MethodBaseDocumentation(docTest.GetMethod("set_Property1")));
             Assert.AreEqual(
                 "Constructor 1",
-                documenter.MethodBaseDocumentation(doctest.GetConstructor(new[] { typeof(int) }))
+                documenter.MethodBaseDocumentation(docTest.GetConstructor(new[] { typeof(int) }))
                 );
 
-            Assert.AreEqual(string.Empty, documenter.MethodBaseDocumentation(doctest.GetMethod("get_NoDocProperty")));
+            Assert.AreEqual(string.Empty, documenter.MethodBaseDocumentation(docTest.GetMethod("get_NoDocProperty")));
         }
     }
 }

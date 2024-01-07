@@ -1,4 +1,4 @@
-﻿// Copyright 2016-2020 Rik Essenius
+﻿// Copyright 2016-2024 Rik Essenius
 //
 //   Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 //   except in compliance with the License. You may obtain a copy of the License at
@@ -17,7 +17,7 @@ using System.Globalization;
 
 #pragma warning disable 1591 // We're missing XML comments on purpose
 #pragma warning disable CA1041 // Provide ObsoleteAttribute message
-#pragma warning disable CA1822 // Mark members as static - intential instance, for testing
+#pragma warning disable CA1822 // Mark members as static - intentional instance, for testing
 
 namespace TestAssemblyWithDocumentationAttribute
 {
@@ -40,7 +40,7 @@ namespace TestAssemblyWithDocumentationAttribute
         public PublicClass(int input1, int? input2)
         {
             PrivateProperty = input1;
-            PublicProperty = input2.Value;
+            PublicProperty = input2!.Value;
         }
 
         [Obsolete("Use Public Property instead", false)]

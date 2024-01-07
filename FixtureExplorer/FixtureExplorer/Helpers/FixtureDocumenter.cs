@@ -1,4 +1,4 @@
-﻿// Copyright 2016-2021 Rik Essenius
+﻿// Copyright 2016-2024 Rik Essenius
 //
 //   Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 //   except in compliance with the License. You may obtain a copy of the License at
@@ -19,7 +19,7 @@ namespace FixtureExplorer.Helpers
     ///     Get documentation from a method via reflection, and determines based on the signatures what kind of fixture tables
     ///     the method can support.
     /// </summary>
-    /// <remarks>It obtains access to the documentation retrieval via the sublassing of MethodBaseDocumenter</remarks>
+    /// <remarks>It obtains access to the documentation retrieval via the subclassing of MethodBaseDocumenter</remarks>
     internal class FixtureDocumenter : MethodBaseDocumenter
     {
         private static readonly List<string> DecisionTableVoidMethods = new List<string>

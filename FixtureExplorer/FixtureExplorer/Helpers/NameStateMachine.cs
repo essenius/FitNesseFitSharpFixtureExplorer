@@ -1,4 +1,4 @@
-﻿// Copyright 2016-2021 Rik Essenius
+﻿// Copyright 2016-2024 Rik Essenius
 //
 //   Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 //   except in compliance with the License. You may obtain a copy of the License at
@@ -112,7 +112,7 @@ namespace FixtureExplorer.Helpers
 
         /// <returns>the next character in the right casing, or empty string if not in a word</returns>
         /// <remarks>
-        ///     Uses the combination of current state and and name event to determine next state and next action.
+        ///     Uses the combination of current state and name event to determine next state and next action.
         ///     Next action decides what we do with the character (to uppercase, as-is or remove)
         /// </remarks>
         [SuppressMessage("ReSharper", "SwitchStatementMissingSomeCases", Justification = "Included in default")]
