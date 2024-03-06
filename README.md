@@ -1,7 +1,8 @@
-# FitNesseFitSharpFixtureExplorer
+# Fixture Explorer ![workflow badge](../../actions/workflows/fixture-explorer-ci.yml/badge.svg)
+
 Fixture to identify API of fixture assemblies using reflection (and documentation convention in the assembly).
 
-# Installation
+## Installation
 The steps to install are very similar to that of installing the [FibonacciDemo](../../../FitNesseFitSharpFibonacciDemo).
 
 Differences are:
@@ -15,8 +16,8 @@ Differences are:
 * Start FitNesse
 * Run the suite: Open a browser and enter the URL http://localhost:8080/FitSharpDemos.FixtureExplorerTest?test
 
-# Tutorial and Reference
+## Tutorial and Reference
 See the [Wiki](../../wiki)
 
-# Contribute
+## Contribute
 Enter an issue or provide a pull request. 
