@@ -10,3 +10,5 @@
 3.0.1 Moved from .NET 4.6.1 to .NET 4.8 for better compatibiliy with FitSharp
 3.1.0 Introduced TestAssemblyWithDocumentationAttribute to be able to use TestAssembly in demos (without the deprecated DocumentationAttribute)
 3.2.0 Introduced AssemblyFinder using config xml when found
+3.3.0 Migration to .NET 6.0
+3.4.0 Migration to .NET 8.0
