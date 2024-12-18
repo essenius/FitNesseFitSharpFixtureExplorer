@@ -1,4 +1,4 @@
-﻿// Copyright 2016-2021 Rik Essenius
+﻿// Copyright 2016-2024 Rik Essenius
 //
 //   Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 //   except in compliance with the License. You may obtain a copy of the License at
@@ -37,17 +37,17 @@ namespace FixtureExplorerTest
         [Obsolete("Using obsolete classes")]
         public void AttributeDocumenterDeprecationTest()
         {
-            var doctest = typeof(AttributeDocumenterTestClass);
-            var documenter = new AttributeDocumenter(doctest, RelevantBindings);
+            var docTest = typeof(AttributeDocumenterTestClass);
+            var documenter = new AttributeDocumenter(docTest, RelevantBindings);
             Assert.AreEqual(string.Empty, documenter.TypeDeprecationMessage);
-            Assert.AreEqual(string.Empty, documenter.MethodBaseDeprecationMessage(doctest.GetMethod("TestMethod1")));
+            Assert.AreEqual(string.Empty, documenter.MethodBaseDeprecationMessage(docTest.GetMethod("TestMethod1")));
             Assert.AreEqual(
                 "[Deprecated: use TestMethod1 instead]",
-                documenter.MethodBaseDeprecationMessage(doctest.GetMethod("TestMethod2"))
+                documenter.MethodBaseDeprecationMessage(docTest.GetMethod("TestMethod2"))
                 );
             Assert.AreEqual(
                 "[Deprecated]",
-                documenter.MethodBaseDeprecationMessage(doctest.GetMethod("NullDocMethod"))
+                documenter.MethodBaseDeprecationMessage(docTest.GetMethod("NullDocMethod"))
                 );
 
             var obsoleteClass = typeof(ObsoleteClass);

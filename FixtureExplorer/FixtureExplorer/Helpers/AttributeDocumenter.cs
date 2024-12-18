@@ -1,4 +1,4 @@
-﻿// Copyright 2016-2021 Rik Essenius
+﻿// Copyright 2016-2024 Rik Essenius
 //
 //   Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 //   except in compliance with the License. You may obtain a copy of the License at
@@ -46,26 +46,26 @@ namespace FixtureExplorer.Helpers
         /// <returns>The indicated attribute for the member if available, null otherwise</returns>
         private static T Attribute<T>(MemberInfo memberInfo) where T : Attribute
         {
-            var attribs = memberInfo.GetCustomAttributes(typeof(T), false);
-            if (attribs.Length == 0) return default;
-            return (T)attribs[0];
+            var attributes = memberInfo.GetCustomAttributes(typeof(T), false);
+            if (attributes.Length == 0) return default;
+            return (T)attributes[0];
         }
 
         /// <summary>
         ///     Under the hood Properties are get and set methods. But attributes are only linked to the Property members.
-        ///     So if we have a property, we need to get the attributes from the Property member. Otherwise we take the methodBase.
+        ///     So if we have a property, we need to get the attributes from the Property member. Otherwise, we take the methodBase.
         /// </summary>
         /// <remarks>Requires: methodBase != null and methodBase.DeclaringType != null</remarks>
         private MemberInfo AttributeBase(MemberInfo methodBase)
         {
             // Under the hood Properties are get and set methods. But attributes are only linked to the Property members.
-            // So if we have a property, we need to get the attributes from the Property member. Otherwise we take the methodBase.
+            // So if we have a property, we need to get the attributes from the Property member. Otherwise, we take the methodBase.
             Debug.Assert(methodBase != null, nameof(methodBase) + " != null");
             var namer = new GracefulNamer(methodBase.Name);
             var parent = methodBase.DeclaringType;
             Debug.Assert(parent != null, nameof(parent) + " != null");
             return namer.IsProperty
-                ? parent.GetMembers(_requiredBindings)
+                ? parent!.GetMembers(_requiredBindings)
                     .FirstOrDefault(m => m.MemberType == MemberTypes.Property && m.Name == namer.RealName)
                 : methodBase;
         }

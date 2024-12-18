@@ -1,4 +1,4 @@
-﻿// Copyright 2016-2021 Rik Essenius
+﻿// Copyright 2016-2024 Rik Essenius
 //
 //   Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 //   except in compliance with the License. You may obtain a copy of the License at
@@ -13,7 +13,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
 #pragma warning disable 1591 // We're missing XML comments on purpose
-#pragma warning disable CA1822 // Mark members as static - intential instance, for testing
+#pragma warning disable CA1822 // Mark members as static - intentional instance, for testing
 
 namespace TestAssembly
 {

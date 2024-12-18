@@ -1,4 +1,4 @@
-﻿// Copyright 2016-2021 Rik Essenius
+﻿// Copyright 2016-2024 Rik Essenius
 //
 //   Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 //   except in compliance with the License. You may obtain a copy of the License at
@@ -85,7 +85,7 @@ namespace FixtureExplorer.Helpers
             Debug.Assert(type.Namespace != null, "type.Namespace != null");
             if (
                 type.IsPrimitive ||
-                type.Namespace.Equals("System", StringComparison.InvariantCulture) && !type.IsGenericType)
+                type.Namespace!.Equals("System", StringComparison.InvariantCulture) && !type.IsGenericType)
             {
                 // This is a built-in type, so simply return that
                 return type.Name;

@@ -1,4 +1,4 @@
-﻿// Copyright 2016-2021 Rik Essenius
+﻿// Copyright 2016-2024 Rik Essenius
 //
 //   Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 //   except in compliance with the License. You may obtain a copy of the License at
@@ -48,7 +48,7 @@ namespace FixtureExplorer.Helpers
                 var assembly = _type.Assembly;
                 var assemblyLocation = Path.GetDirectoryName(assembly.Location);
                 Debug.Assert(assemblyLocation != null, nameof(assemblyLocation) + " != null");
-                var uri = new UriBuilder(assemblyLocation);
+                var uri = new UriBuilder(assemblyLocation!);
                 var assemblyPath = Uri.UnescapeDataString(uri.Path);
                 return Path.Combine(assemblyPath, assembly.GetName().Name + ".xml");
             }
@@ -100,7 +100,7 @@ namespace FixtureExplorer.Helpers
             var docDict = new Dictionary<string, string>();
             var parameters = new List<string>();
             var rootNode = xmlDocument.FirstChild;
-            foreach (XmlNode entry in rootNode.ChildNodes)
+            foreach (XmlNode entry in rootNode!.ChildNodes)
             {
                 if (entry.Name == "param")
                 {
@@ -163,7 +163,7 @@ namespace FixtureExplorer.Helpers
             }
         }
 
-        /// <summary>Get the inner text, but also include references from 'see' and 'seealso' elements</summary>
+        /// <summary>Get the inner text, but also include references from 'see' and 'see also' elements</summary>
         /// <remarks>
         ///     For references, gets the graceful name of the entry after the last dot before the first parenthesis (i.e. ignores class
         ///     references and parameters)
