@@ -1,4 +1,4 @@
-﻿// Copyright 2016-2024 Rik Essenius
+﻿// Copyright 2016-2025 Rik Essenius
 //
 //   Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 //   except in compliance with the License. You may obtain a copy of the License at
@@ -34,7 +34,7 @@ namespace FixtureExplorer.Helpers
             }
         }
 
-        internal static string FixtureDocumentationProperty { get; } = "FixtureDocumentation";
+        internal static string FixtureDocumentationProperty => "FixtureDocumentation";
 
         /// <remarks>IDocumenter interface implementation. Defers to MethodBaseDocumentation as it's the same</remarks>
         public string ConstructorDocumentation(ConstructorInfo constructor) => MethodBaseDocumentation(constructor);
@@ -54,10 +54,10 @@ namespace FixtureExplorer.Helpers
         /// <remarks>With constructors splitting out implies returning the class documentation</remarks>
         private string DocumentationFor(string key)
         {
-            if (_documentation.ContainsKey(key)) return _documentation[key];
+            if (_documentation.TryGetValue(key, out var specificValue)) return specificValue;
             var keyWithoutParamCount = key.Split('`')[0];
             var nameToSearch = new GracefulNamer(keyWithoutParamCount).RealName;
-            return _documentation.ContainsKey(nameToSearch) ? _documentation[nameToSearch] : string.Empty;
+            return _documentation.TryGetValue(nameToSearch, out var genericValue) ? genericValue : string.Empty;
         }
     }
 }

@@ -34,7 +34,7 @@ namespace TestAssemblyWithDocumentationAttribute
 
         public int Property { get; set; }
 
-        public int PropertyWithoutDocumentation { get; } = 1;
+        public int PropertyWithoutDocumentation => 1;
 
         public void BeginTable()
         {

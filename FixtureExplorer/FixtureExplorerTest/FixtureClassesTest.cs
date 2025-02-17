@@ -1,4 +1,4 @@
-﻿// Copyright 2016-2021 Rik Essenius
+﻿// Copyright 2016-2025 Rik Essenius
 //
 //   Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 //   except in compliance with the License. You may obtain a copy of the License at
@@ -36,7 +36,6 @@ namespace FixtureExplorerTest
                 "|report:Test Assembly With Documentation Attribute|report:Public Class|report:input1: Int32, input2: Nullable<Int32>|report:Decision, Query, Script|report:Just a demo public class constructor with two parameters. Params: { input1: input 1 doc; input2: input 2 doc }. Documentation attribute for public class constructor with two parameters|",
                 "|report:Test Assembly With Documentation Attribute|report:Wrong Table Class|report:|report:Decision, Script|report:WrongTableClass is a fixture with a wrong Table or Query Signature, so should not be recognized as table. Class with a wrong Table/Query signature, so only supports Script and Decision|"
             };
-            var publicClass = new PublicClass(5);
             var location = Assembly.GetAssembly(typeof(PublicClass)).Location;
             // forcing use of the abstract DoTable function, which should delegate to the subclass
             TableTypeFixture fixture = new FixtureClasses(location);

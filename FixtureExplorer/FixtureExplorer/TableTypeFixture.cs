@@ -64,11 +64,9 @@ namespace FixtureExplorer
         /// <summary>Memory function delivering the assembly to work with</summary>
         private Assembly FixtureAssembly()
         {
-            if (_assembly == null)
-            {
-                var locator = new AssemblyLocator(_assemblyName, ".");
-                _assembly = Assembly.LoadFrom(Path.GetFullPath(locator.FindAssemblyPath()));
-            }
+            if (_assembly != null) return _assembly;
+            var locator = new AssemblyLocator(_assemblyName, ".");
+            _assembly = Assembly.LoadFrom(Path.GetFullPath(locator.FindAssemblyPath()));
             return _assembly;
         }
 

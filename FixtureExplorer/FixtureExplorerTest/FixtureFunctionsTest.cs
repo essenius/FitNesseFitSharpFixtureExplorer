@@ -1,4 +1,4 @@
-﻿// Copyright 2016-2021 Rik Essenius
+﻿// Copyright 2016-2025 Rik Essenius
 //
 //   Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 //   except in compliance with the License. You may obtain a copy of the License at
@@ -29,10 +29,7 @@ namespace FixtureExplorerTest
         {
             var expected = new List<string>
             {
-                "|report:Namespace|report:Class|report:Scope|report:Fixture Name|report:Method Type|report:Return Type|report:Parameters|report:Supports Table Type|report:" +
-                "Documentation" +
-                "" +
-                "|",
+                "|report:Namespace|report:Class|report:Scope|report:Fixture Name|report:Method Type|report:Return Type|report:Parameters|report:Supports Table Type|report:Documentation|",
                 "|report:Test Assembly With Documentation Attribute|report:Class Not Supporting Decision Table|report:public|report:Int Method With Param|report:Method|report:String|report:param: Tuple<Nullable<Int32>, Nullable<Decimal>>|report:Script|report:|",
                 "|report:Test Assembly With Documentation Attribute|report:Class Not Supporting Decision Table|report:public|report:Void Method With Two Params|report:Method|report:Void|report:param1: String, param2: Nullable<Int32>|report:Script|report:Writes the two params concatenated. Params: { param1: param1 doc; param2: param2 doc }. Documentation Attribute - Writes the two params concatenated|",
                 "|report:Test Assembly With Documentation Attribute|report:Deprecated Class|report:public|report:Public Method In Obsolete Class|report:Method|report:String|report:|report:Decision, Script|report:[Deprecated class: Use Public Class instead]|",
@@ -66,7 +63,6 @@ namespace FixtureExplorerTest
                 "|report:Test Assembly With Documentation Attribute|report:Wrong Table Class|report:public|report:Reset|report:Method|report:Int32|report:|report:Decision, Script|report:|",
                 "|report:Test Assembly With Documentation Attribute|report:Wrong Table Class|report:public|report:Table|report:Method|report:List<Object>|report:a: Int32, b: Int32|report:Script|report:|"
             };
-
             var location = Assembly.GetAssembly(typeof(PublicClass)).Location;
 
             var fixture = new FixtureFunctions(location);

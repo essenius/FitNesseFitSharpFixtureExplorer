@@ -65,6 +65,7 @@ namespace FixtureExplorer.Helpers
         public string MethodBaseDocumentation(MethodBase methodBase) =>
             DocumentationFor(XmlDocumentKey.MethodBaseKey(methodBase));
 
+        private static readonly string[] Summary = new[] { "summary" };
         /// <summary>
         ///     As XML documentation has multiple sections (summary, remarks, returns, etc.) we need to merge these. We start
         ///     with the summary if it's there, and then we add all other available sections based on the sequence they were entered.
@@ -72,9 +73,9 @@ namespace FixtureExplorer.Helpers
         private static string AssembleResult(Dictionary<string, string> docDict)
         {
             var result = new List<string>();
-            if (docDict.ContainsKey("summary")) result.Add(TrimWhitespace(docDict["summary"]));
+            if (docDict.TryGetValue("summary", out var summary)) result.Add(TrimWhitespace(summary));
             result.AddRange(docDict.Keys
-                .Except(new[] { "summary" })
+                .Except(Summary)
                 .Select(docKey => Capitalize(docKey) + ": " + TrimWhitespace(docDict[docKey])));
 
             return string.Join(". ", result);
@@ -82,7 +83,7 @@ namespace FixtureExplorer.Helpers
 
         ///<requires>key must be at least one character</requires>
         private static string Capitalize(string key) =>
-            key.Substring(0, 1).ToUpper(CultureInfo.InvariantCulture) + key.Substring(1);
+            key.Substring( 0, 1).ToUpper(CultureInfo.InvariantCulture) + key.Substring(1);
 
         /// <summary>
         ///     Get documentation from the loaded dictionary. Parses the XML section to extract the sections belonging to the element,
